@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>チャーリー・ヴルツ — SUPER FORMULA / Impress International</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/shared.css">
+<style>
+  /* PROFILE HERO */
+  .profile {
+    position: relative;
+    background: var(--ink);
+    color: #fff;
+    overflow: hidden;
+    padding: 64px 32px 80px;
+  }
+  .profile__bg {
+    position: absolute; inset: 0;
+    background-image: url('images/wurz_race_panning.jpg');
+    background-size: cover;
+    background-position: center 35%;
+    opacity: 0.32;
+    filter: grayscale(0.4) contrast(1.05);
+  }
+  .profile__bg::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(10,10,10,0.7) 0%, rgba(10,10,10,0.4) 50%, rgba(10,10,10,0.95) 100%);
+  }
+  .profile__inner {
+    position: relative; max-width: 1280px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: end;
+  }
+  .profile__left { z-index: 2; }
+  .profile__tag {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 12px; letter-spacing: 0.3em; color: var(--rouge);
+    display: flex; align-items: center; gap: 12px; margin-bottom: 24px;
+  }
+  .profile__tag::before { content:""; width: 32px; height: 1px; background: var(--rouge); }
+  .profile__bignum {
+    font-family: "Anton", sans-serif;
+    font-size: 240px; line-height: 0.85;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(255,255,255,0.4);
+    position: absolute; right: 32px; top: 24px; pointer-events: none;
+  }
+  .profile__name-jp {
+    font-family: "Noto Serif JP", serif; font-weight: 900;
+    font-size: clamp(40px, 5.5vw, 72px); line-height: 1; letter-spacing: 0.04em;
+  }
+  .profile__name-en {
+    font-family: "Anton", sans-serif; font-size: 28px;
+    letter-spacing: 0.2em; color: rgba(255,255,255,0.5); margin-top: 12px;
+  }
+  .profile__tagline {
+    margin-top: 28px; padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.18);
+    font-family: "Noto Serif JP", serif;
+    font-size: 22px; font-weight: 700; line-height: 1.6;
+  }
+  .profile__tagline em { font-style: normal; color: var(--rouge); }
+  .profile__meta {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+    margin-top: 36px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.18);
+  }
+  .profile__meta dt { font-family: "Bebas Neue", sans-serif; font-size: 10px; letter-spacing: 0.25em; color: rgba(255,255,255,0.5); }
+  .profile__meta dd { font-family: "Noto Serif JP", serif; font-weight: 700; font-size: 16px; margin-top: 6px; }
+  .profile__meta dd small { display: block; font-weight: 400; font-size: 11px; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; margin-top: 4px; }
+  .profile__right { position: relative; z-index: 2; }
+  .profile__photo {
+    aspect-ratio: 4/5;
+    background-image: url('images/wurz_cockpit_eyes.jpg');
+    background-size: cover;
+    background-position: center 35%;
+    position: relative;
+  }
+  .profile__photo::after {
+    content: "";
+    position: absolute; top: 16px; left: 16px;
+    width: 100%; height: 100%;
+    border: 1px solid var(--rouge); z-index: -1;
+  }
+  .profile__photo-meta {
+    position: absolute; bottom: 12px; left: 12px; right: 12px;
+    display: flex; justify-content: space-between;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 10px; letter-spacing: 0.2em;
+    color: #fff; background: rgba(0,0,0,0.5);
+    padding: 6px 10px;
+  }
+
+  /* TEAM section */
+  .team {
+    background: var(--paper);
+    padding: 80px 32px;
+  }
+  .team__inner {
+    max-width: 1280px; margin: 0 auto;
+    display: grid; grid-template-columns: 280px 1fr; gap: 56px;
+    align-items: center;
+  }
+  .team__logo {
+    background: var(--ink);
+    padding: 48px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1/1;
+  }
+  .team__logo img { width: 100%; max-width: 200px; }
+  .team__body h3 {
+    font-family: "Anton", sans-serif;
+    font-size: 48px; letter-spacing: 0.04em; line-height: 1;
+    margin-bottom: 12px;
+  }
+  .team__body h3 small {
+    display: block;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 12px; letter-spacing: 0.25em;
+    color: var(--rouge); margin-bottom: 12px;
+  }
+  .team__body p {
+    font-size: 14px; line-height: 1.9; color: #333;
+    margin-top: 18px; max-width: 720px;
+  }
+
+  /* STORY */
+  .story { padding: 80px 32px; background: var(--paper-2); }
+  .story__inner { max-width: 980px; margin: 0 auto; }
+  .story__kicker { font-family: "Bebas Neue", sans-serif; letter-spacing: 0.3em; font-size: 12px; color: var(--rouge); margin-bottom: 18px; }
+  .story__title {
+    font-family: "Noto Serif JP", serif; font-weight: 900;
+    font-size: clamp(28px, 3vw, 42px); line-height: 1.5; margin-bottom: 32px;
+  }
+  .story__title em { font-style: normal; color: var(--rouge); }
+  .story__text p { font-size: 15px; line-height: 2; color: #2a2a2a; margin-bottom: 20px; }
+  .story__text strong { font-weight: 700; }
+
+  /* CAREER */
+  .career { padding: 80px 32px; background: var(--paper); }
+  .career__head {
+    max-width: 1100px; margin: 0 auto 48px;
+    border-bottom: 1px solid var(--ink); padding-bottom: 18px;
+    display: flex; align-items: flex-end; justify-content: space-between;
+  }
+  .career__head h2 { font-family: "Anton", sans-serif; font-size: 56px; letter-spacing: 0.04em; line-height: 1; }
+  .career__head h2 small {
+    display: block; font-family: "Noto Serif JP", serif;
+    font-size: 14px; letter-spacing: 0.18em;
+    margin-bottom: 8px; color: var(--rouge);
+  }
+  .career__list { max-width: 1100px; margin: 0 auto; position: relative; }
+  .career__list::before {
+    content: ""; position: absolute; top: 0; bottom: 0; left: 80px;
+    width: 1px; background: var(--line);
+  }
+  .year {
+    display: grid; grid-template-columns: 80px 1fr; gap: 32px;
+    align-items: flex-start; padding: 20px 0; position: relative;
+  }
+  .year::before {
+    content: ""; position: absolute; left: 76px; top: 28px;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--ink); border: 2px solid var(--paper);
+  }
+  .year--win::before { background: var(--rouge); box-shadow: 0 0 0 4px rgba(255,29,76,0.15); }
+  .year__y { font-family: "Anton", sans-serif; font-size: 22px; letter-spacing: 0.04em; }
+  .year--win .year__y { color: var(--rouge); }
+  .year__body { padding-left: 24px; font-size: 13px; line-height: 1.9; color: #333; }
+  .year__body .badge {
+    display: inline-block; background: var(--rouge); color: #fff;
+    font-family: "Bebas Neue", sans-serif; font-size: 10px;
+    letter-spacing: 0.18em; padding: 2px 8px; margin-left: 6px; vertical-align: middle;
+  }
+
+  /* 2026 SEASON ROUNDS */
+  .season { padding: 80px 32px; background: var(--paper-2); }
+  .season__inner { max-width: 1280px; margin: 0 auto; }
+
+  .round {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+    align-items: center; padding: 32px 0;
+    border-top: 1px solid var(--line);
+  }
+  .round:last-child { border-bottom: 1px solid var(--line); }
+  .round__img { aspect-ratio: 4/3; background-size: cover; background-position: center; }
+  .round--r1 .round__img { background-image: url('images/wurz_front_53.jpg'); }
+  .round--r3 .round__img { background-image: url('images/wurz_pitbox.jpg'); }
+  .round__body { padding: 16px 0; }
+  .round__rd { font-family: "Anton", sans-serif; font-size: 14px; letter-spacing: 0.3em; color: var(--rouge); margin-bottom: 14px; }
+  .round__title { font-family: "Noto Serif JP", serif; font-weight: 700; font-size: 32px; line-height: 1.3; margin-bottom: 18px; }
+  .round__meta {
+    display: grid; grid-template-columns: repeat(3, auto); gap: 28px;
+    margin: 22px 0; padding: 18px 0;
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  }
+  .round__meta dt { font-family: "Bebas Neue", sans-serif; font-size: 10px; letter-spacing: 0.25em; color: #777; }
+  .round__meta dd { font-family: "Noto Serif JP", serif; font-weight: 700; font-size: 14px; margin-top: 6px; }
+  .round__status { margin-top: 18px; font-family: "Bebas Neue", sans-serif; font-size: 11px; letter-spacing: 0.2em; color: #999; }
+  .round__status .done { color: var(--ink); }
+
+  /* GALLERY */
+  .gallery { padding: 80px 32px 100px; background: var(--ink); }
+  .gallery__head {
+    max-width: 1280px; margin: 0 auto 32px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding-bottom: 18px; color: #fff;
+  }
+  .gallery__head h2 { font-family: "Anton", sans-serif; font-size: 48px; letter-spacing: 0.04em; line-height: 1; }
+  .gallery__head h2 small {
+    display: block; font-family: "Noto Serif JP", serif;
+    font-size: 13px; letter-spacing: 0.18em; margin-bottom: 8px; color: var(--rouge);
+  }
+  .gallery__grid {
+    max-width: 1280px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 140px; gap: 12px;
+  }
+  .g { background-size: cover; background-position: center; overflow: hidden; transition: transform .5s ease; }
+  .g:hover { transform: scale(1.02); }
+  .g--1 { grid-column: span 7; grid-row: span 3; background-image: url('images/wurz_low_angle.jpg'); }
+  .g--2 { grid-column: span 5; grid-row: span 2; background-image: url('images/wurz_pit_side.jpg'); }
+  .g--3 { grid-column: span 5; grid-row: span 1; background-image: url('images/wurz_winner_pose.jpg'); background-position: center 20%; }
+  .g--4 { grid-column: span 6; grid-row: span 2; background-image: url('images/wurz_front_53.jpg'); }
+  .g--5 { grid-column: span 6; grid-row: span 2; background-image: url('images/wurz_race_panning.jpg'); }
+
+  @media (max-width: 900px) {
+    .profile__inner { grid-template-columns: 1fr; }
+    .profile__bignum { font-size: 140px; right: 16px; top: 8px; }
+    .profile__meta { grid-template-columns: repeat(2, 1fr); }
+    .team__inner { grid-template-columns: 1fr; gap: 32px; }
+    .team__logo { max-width: 240px; }
+    .round { grid-template-columns: 1fr; gap: 24px; }
+    .round__meta { grid-template-columns: repeat(2, 1fr); }
+    .gallery__grid { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 120px; }
+    .g--1,.g--2,.g--3,.g--4,.g--5 { grid-column: span 6; grid-row: span 2; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="siteheader">
+    <div class="siteheader__logo">IMPRESS<span>.</span> INTERNATIONAL</div>
+    <nav>
+      <ul>
+        <li><a href="#">COMPANY</a></li>
+        <li><a href="#">BUSINESS</a></li>
+        <li><a href="../index.html" class="current">RACING</a></li>
+        <li><a href="#">RECRUIT</a></li>
+        <li><a href="#">CONTACT</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="subheader">
+    <div class="subheader__name">SUPER FORMULA <small>2026 SEASON</small></div>
+    <nav>
+      <ul>
+        <li><a href="index.html">TOP</a></li>
+        <li><a href="schedule.html">SCHEDULE</a></li>
+        <li><a href="driver.html" class="current">DRIVER</a></li>
+        <li><a href="results.html">RESULTS</a></li>
+        <li><a href="../index.html">← BACK</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="crumb">HOME / <a href="../index.html">RACING</a> / <a href="index.html">SUPER FORMULA</a> / <span>チャーリー・ヴルツ</span></div>
+
+  <section class="profile">
+    <div class="profile__bg"></div>
+    <div class="profile__bignum">53</div>
+    <div class="profile__inner">
+      <div class="profile__left">
+        <div class="profile__tag">SPONSORED DRIVER — 2026</div>
+        <h1 class="profile__name-jp">チャーリー・ヴルツ</h1>
+        <div class="profile__name-en">CHARLIE WURZ</div>
+        <p class="profile__tagline">
+          F1とル・マンを駆けた父の血を受け継ぎ、<br>
+          <em>サラブレッド</em>として日本最高峰の舞台へ。
+        </p>
+        <dl class="profile__meta">
+          <div><dt>CATEGORY</dt><dd>SUPER FORMULA<small>2026 SEASON</small></dd></div>
+          <div><dt>TEAM</dt><dd>TEAM GOH<small>TGR-DC</small></dd></div>
+          <div><dt>CAR No.</dt><dd>#53<small>SF / 2026</small></dd></div>
+          <div><dt>PARTNER</dt><dd>TOYOTA GAZOO Racing<small>—</small></dd></div>
+        </dl>
+      </div>
+      <div class="profile__right">
+        <div class="profile__photo">
+          <div class="profile__photo-meta">
+            <span>WURZ / 2026</span>
+            <span>SF / TEAM GOH</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="story">
+    <div class="story__inner">
+      <div class="story__kicker">— STORY</div>
+      <h2 class="story__title">
+        F1とル・マンを駆けた父の血を受け継ぐ、<br>
+        <em>サラブレッド・レーサー</em>。
+      </h2>
+      <div class="story__text">
+        <p>
+          チャーリー・ヴルツの父、<strong>アレクサンダー・ヴルツ</strong>は、元F1ドライバーであり、ル・マン24時間レースで2度の総合優勝を果たしたレジェンドです。
+          父の背中を追い、チャーリーは<strong>2017年からカートに参戦</strong>。その才能はF1チーム<strong>スクーデリア・フェラーリ</strong>のドライバー育成プログラムへの参加をスカウトされるほどでした。
+        </p>
+        <p>
+          <strong>2021年、イタリアF4選手権ルーキークラスで優勝</strong>。<strong>2022年にはF4・UAE選手権でシリーズチャンピオンを獲得</strong>。さらに<strong>2023年にはフォーミュラ・リージョナル・オセアニア・チャンピオンシップを制覇</strong>と、海外フォーミュラの登竜門を着実に駆け上がってきました。
+        </p>
+        <p>
+          そして<strong>2025年12月</strong>、鈴鹿サーキットで開催されたスーパーフォーミュラ合同・ルーキーテストに<strong>TEAM GOH</strong>から参加。<strong>2026年シーズンより、日本最高峰のフォーミュラ・SUPER FORMULAに正式参戦</strong>することとなりました。
+        </p>
+        <p>
+          インプレスインターナショナルは、世界の頂点を目指す若きヴルツ選手の挑戦を、スポンサーとして支援します。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="team">
+    <div class="team__inner">
+      <div class="team__logo">
+        <img src="../assets/logos/team_goh.png" alt="TEAM GOH">
+      </div>
+      <div class="team__body">
+        <h3><small>PARTNER TEAM</small>TEAM GOH</h3>
+        <p>
+          チャーリー・ヴルツ選手が2026年シーズンを戦うチーム。
+          TOYOTA GAZOO Racing傘下、TGR-DC（TOYOTA GAZOO Racing Drivers' Challenge）の体制で、新世代のフォーミュラドライバーをサポートする。
+          ヴルツ選手はTEAM GOHから合同テストで初走行し、2026年シーズンより#53として正式参戦。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAREER TIMELINE -->
+  <section class="career">
+    <div class="career__head">
+      <h2><small>SECTION</small>CAREER</h2>
+      <div style="font-family:'Bebas Neue';letter-spacing:0.2em;font-size:12px;color:#777;">— 2017–2026</div>
+    </div>
+    <div class="career__list">
+
+      <div class="year year--win">
+        <div class="year__y">2026</div>
+        <div class="year__body">SUPER FORMULA 正式参戦 ／ TEAM GOH #53 <span class="badge">NEW SEASON</span></div>
+      </div>
+      <div class="year">
+        <div class="year__y">2025</div>
+        <div class="year__body">12月、鈴鹿サーキットで開催されたSUPER FORMULA合同・ルーキーテストに TEAM GOH から参加</div>
+      </div>
+      <div class="year year--win">
+        <div class="year__y">2023</div>
+        <div class="year__body">フォーミュラ・リージョナル・オセアニア・チャンピオンシップ <strong>シリーズチャンピオン</strong> <span class="badge">CHAMPION</span></div>
+      </div>
+      <div class="year year--win">
+        <div class="year__y">2022</div>
+        <div class="year__body">F4・UAE選手権 <strong>シリーズチャンピオン</strong> <span class="badge">CHAMPION</span></div>
+      </div>
+      <div class="year year--win">
+        <div class="year__y">2021</div>
+        <div class="year__body">イタリアF4選手権 ルーキークラス <strong>優勝</strong> <span class="badge">WIN</span></div>
+      </div>
+      <div class="year">
+        <div class="year__y">2017</div>
+        <div class="year__body">カート参戦開始 ／ スクーデリア・フェラーリのドライバー育成プログラムへの参加をスカウトされる</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 2026 SEASON ROUNDS -->
+  <section class="season">
+    <div class="section__head" style="max-width:1280px;margin:0 auto 48px;">
+      <h2><small>SECTION</small>2026 ROUNDS</h2>
+      <div class="index">SUPER FORMULA — RACES SO FAR</div>
+    </div>
+    <div class="season__inner">
+
+      <div class="round round--r1">
+        <div class="round__img"></div>
+        <div class="round__body">
+          <div class="round__rd">ROUND 01 / 02</div>
+          <h3 class="round__title">モビリティリゾートもてぎ<br><span style="font-size:18px;color:#777;">MOBILITY RESORT MOTEGI / TOCHIGI</span></h3>
+          <dl class="round__meta">
+            <div><dt>DATE</dt><dd>2026.04.03–05</dd></div>
+            <div><dt>CIRCUIT</dt><dd>もてぎ</dd></div>
+            <div><dt>CATEGORY</dt><dd>SUPER FORMULA</dd></div>
+          </dl>
+          <p style="font-size:13px;line-height:1.9;color:#444;">
+            2026年シーズン開幕戦。栃木・もてぎの舞台で、TEAM GOHのカラーをまとった#53がシーズンをスタート。
+          </p>
+          <div class="round__status"><span class="done">— FINISHED</span></div>
+        </div>
+      </div>
+
+      <div class="round round--r3">
+        <div class="round__img"></div>
+        <div class="round__body">
+          <div class="round__rd">ROUND 03</div>
+          <h3 class="round__title">オートポリス<br><span style="font-size:18px;color:#777;">AUTOPOLIS / OITA</span></h3>
+          <dl class="round__meta">
+            <div><dt>DATE</dt><dd>2026.04.24–26</dd></div>
+            <div><dt>CIRCUIT</dt><dd>オートポリス</dd></div>
+            <div><dt>CATEGORY</dt><dd>SUPER FORMULA</dd></div>
+          </dl>
+          <p style="font-size:13px;line-height:1.9;color:#444;">
+            第3戦の舞台、九州・オートポリス。ピットビルを背景に走り出した#53。シーズン3戦目を完走。
+          </p>
+          <div class="round__status"><span class="done">— FINISHED</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery">
+    <div class="gallery__head">
+      <h2><small>SECTION</small>GALLERY</h2>
+    </div>
+    <div class="gallery__grid">
+      <div class="g g--1"></div>
+      <div class="g g--2"></div>
+      <div class="g g--3"></div>
+      <div class="g g--4"></div>
+      <div class="g g--5"></div>
+    </div>
+  </section>
+
+  <div class="back">
+    <a href="index.html">← BACK TO SUPER FORMULA TOP</a>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+
+# Dependencies (if any)
+node_modules/
+
+# Source materials (任意: 経歴PDF・aiファイルなど元素材をリポジトリに含めたくない場合はこのコメントを外す)
+# source-materials/

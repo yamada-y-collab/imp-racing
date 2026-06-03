@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SCHEDULE — FIA-F4 2026 / Impress International</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/shared.css">
+<style>
+  .pagetitle {
+    position: relative; background: var(--ink); color: #fff;
+    padding: 80px 32px 64px; overflow: hidden;
+  }
+  .pagetitle__bg {
+    position: absolute; inset: 0;
+    background-image: url('images/ikejima_race_panning.jpg');
+    background-size: cover; background-position: center 40%;
+    opacity: 0.32; filter: grayscale(0.3);
+  }
+  .pagetitle__bg::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(10,10,10,0.5), rgba(10,10,10,0.92));
+  }
+  .pagetitle__inner {
+    position: relative; max-width: 1280px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: flex-end;
+    gap: 40px; flex-wrap: wrap;
+  }
+  .pagetitle__kicker {
+    font-family: "Bebas Neue", sans-serif; letter-spacing: 0.3em;
+    font-size: 12px; color: var(--rouge); margin-bottom: 18px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .pagetitle__kicker::before { content:""; width: 32px; height: 1px; background: var(--rouge); }
+  .pagetitle h1 {
+    font-family: "Anton", sans-serif; font-size: clamp(56px, 8vw, 120px);
+    line-height: 0.9; letter-spacing: 0.02em;
+  }
+  .pagetitle h1 small {
+    display: block; font-family: "Noto Serif JP", serif; font-weight: 700;
+    font-size: clamp(16px, 1.6vw, 22px); letter-spacing: 0.08em;
+    color: #fff; margin-bottom: 12px;
+  }
+  .pagetitle__meta { text-align: right; border-left: 1px solid rgba(255,255,255,0.2); padding-left: 32px; }
+  .pagetitle__meta dt { font-family: "Bebas Neue", sans-serif; font-size: 10px; letter-spacing: 0.3em; color: rgba(255,255,255,0.5); }
+  .pagetitle__meta dd { font-family: "Anton", sans-serif; font-size: 42px; line-height: 1; margin: 6px 0 18px; }
+  .pagetitle__meta dd small { font-size: 12px; color: var(--rouge); margin-left: 6px; letter-spacing: 0.1em; }
+
+  .schedule { padding: 64px 32px 80px; }
+  .schedule__inner { max-width: 1280px; margin: 0 auto; }
+  .month {
+    display: grid; grid-template-columns: 200px 1fr;
+    gap: 48px; padding: 36px 0;
+    border-top: 1px solid var(--line);
+  }
+  .month:first-child { border-top: 1px solid var(--ink); }
+  .month__label { position: sticky; top: 130px; align-self: start; display: flex; flex-direction: column; }
+  .month__num { font-family: "Anton", sans-serif; font-size: 88px; line-height: 0.8; color: var(--ink); }
+  .month__name { font-family: "Bebas Neue", sans-serif; font-size: 14px; letter-spacing: 0.3em; color: #777; margin-top: 12px; }
+  .month__year { font-family: "Bebas Neue", sans-serif; font-size: 11px; letter-spacing: 0.2em; color: var(--rouge); margin-top: 4px; }
+  .month__rounds { display: flex; flex-direction: column; gap: 16px; }
+
+  .rd {
+    display: grid; grid-template-columns: 60px 1fr auto; gap: 24px;
+    align-items: center; padding: 24px;
+    background: #fff; border: 1px solid var(--line);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    cursor: pointer;
+  }
+  .rd:hover {
+    transform: translateX(6px);
+    box-shadow: 0 20px 40px -25px rgba(0,0,0,0.25);
+    border-color: var(--rouge);
+  }
+  .rd__rd { font-family: "Anton", sans-serif; font-size: 36px; line-height: 0.9; color: var(--rouge); text-align: center; }
+  .rd__rd small { display: block; font-family: "Bebas Neue", sans-serif; font-size: 10px; letter-spacing: 0.2em; color: #999; margin-top: 6px; }
+  .rd__body { display: flex; flex-direction: column; gap: 6px; }
+  .rd__cat { font-family: "Bebas Neue", sans-serif; font-size: 10px; letter-spacing: 0.2em; color: var(--rouge); }
+  .rd__circuit { font-family: "Noto Serif JP", serif; font-weight: 700; font-size: 22px; line-height: 1.25; }
+  .rd__circuit small { font-family: "Bebas Neue", sans-serif; font-weight: 400; font-size: 11px; letter-spacing: 0.18em; color: #888; margin-left: 8px; }
+  .rd__sub { display: flex; gap: 18px; margin-top: 4px; font-size: 12px; color: #666; flex-wrap: wrap; }
+  .rd__sub strong { color: var(--ink); font-weight: 700; }
+  .rd__right { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+  .rd__date { font-family: "Anton", sans-serif; font-size: 22px; letter-spacing: 0.04em; }
+  .rd__date small { display: block; font-family: "Bebas Neue", sans-serif; font-size: 10px; letter-spacing: 0.2em; color: #999; margin-top: 4px; }
+  .rd__status { font-family: "Bebas Neue", sans-serif; font-size: 11px; letter-spacing: 0.2em; }
+  .rd__status.is-next { color: var(--rouge); position: relative; padding-left: 14px; }
+  .rd__status.is-next::before {
+    content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+    width: 6px; height: 6px; border-radius: 50%; background: var(--rouge);
+    animation: pulse2 1.6s infinite;
+  }
+  @keyframes pulse2 { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .rd__status.is-done { color: #999; }
+  .rd__status.is-coming { color: #999; }
+
+  @media (max-width: 900px) {
+    .month { grid-template-columns: 1fr; gap: 12px; }
+    .month__label { position: static; flex-direction: row; align-items: baseline; gap: 16px; }
+    .month__num { font-size: 56px; }
+    .rd { grid-template-columns: 50px 1fr; gap: 12px; }
+    .rd__right { grid-column: 1 / -1; flex-direction: row; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid var(--line); }
+    .pagetitle__meta { border-left: 0; padding-left: 0; text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="siteheader">
+    <div class="siteheader__logo">IMPRESS<span>.</span> INTERNATIONAL</div>
+    <nav>
+      <ul>
+        <li><a href="#">COMPANY</a></li>
+        <li><a href="#">BUSINESS</a></li>
+        <li><a href="../index.html" class="current">RACING</a></li>
+        <li><a href="#">RECRUIT</a></li>
+        <li><a href="#">CONTACT</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="subheader">
+    <div class="subheader__name">FIA-F4 <small>JAPANESE CHAMPIONSHIP 2026</small></div>
+    <nav>
+      <ul>
+        <li><a href="index.html">TOP</a></li>
+        <li><a href="schedule.html" class="current">SCHEDULE</a></li>
+        <li><a href="driver.html">DRIVER</a></li>
+        <li><a href="results.html">RESULTS</a></li>
+        <li><a href="../index.html">← BACK</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="crumb">HOME / <a href="../index.html">RACING</a> / <a href="index.html">FIA-F4</a> / <span>SCHEDULE</span></div>
+
+  <section class="pagetitle">
+    <div class="pagetitle__bg"></div>
+    <div class="pagetitle__inner">
+      <div>
+        <div class="pagetitle__kicker">FIA-F4 — RACE CALENDAR</div>
+        <h1><small>年間スケジュール</small>SCHEDULE</h1>
+      </div>
+      <dl class="pagetitle__meta">
+        <dt>SEASON</dt>
+        <dd>2026<small>NOW</small></dd>
+        <dt>TOTAL ROUNDS</dt>
+        <dd>07<small>RACES</small></dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="schedule">
+    <div class="schedule__inner">
+
+      <!-- MAY -->
+      <div class="month">
+        <div class="month__label">
+          <div class="month__num">05</div>
+          <div class="month__name">MAY</div>
+          <div class="month__year">2026</div>
+        </div>
+        <div class="month__rounds">
+          <div class="rd">
+            <div class="rd__rd">R1</div>
+            <div class="rd__body">
+              <div class="rd__cat">FIA-F4 JAPANESE CHAMPIONSHIP</div>
+              <div class="rd__circuit">富士スピードウェイ<small>FUJI SPEEDWAY / SHIZUOKA</small></div>
+              <div class="rd__sub"><span><strong>池島 実紅</strong></span><span>TGM Grand Prix / #53</span></div>
+            </div>
+            <div class="rd__right">
+              <div class="rd__date">05.01<small>– 05.04</small></div>
+              <div class="rd__status is-done">— FINISHED</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- JUNE -->
+      <div class="month">
+        <div class="month__label">
+          <div class="month__num">06</div>
+          <div class="month__name">JUNE</div>
+          <div class="month__year">2026</div>
+        </div>
+        <div class="month__rounds">
+          <div class="rd">
+            <div class="rd__rd">R2</div>
+            <div class="rd__body">
+              <div class="rd__cat">FIA-F4 JAPANESE CHAMPIONSHIP</div>
+              <div class="rd__circuit">岡山国際サーキット<small>OKAYAMA INTERNATIONAL CIRCUIT</small></div>
+              <div class="rd__sub"><span><strong>池島 実紅</strong></span><span>TGM Grand Prix / #53</span></div>
+            </div>
+            <div class="rd__right">
+              <div class="rd__date">06.11<small>– 06.14</small></div>
+              <div class="rd__status is-next">NEXT ROUND</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- JULY-AUGUST -->
+      <div class="month">
+        <div class="month__label">
+          <div class="month__num">07</div>
+          <div class="month__name">JUL — AUG</div>
+          <div class="month__year">2026</div>
+        </div>
+        <div class="month__rounds">
+          <div class="rd">
+            <div class="rd__rd">R3</div>
+            <div class="rd__body">
+              <div class="rd__cat">FIA-F4 JAPANESE CHAMPIONSHIP</div>
+              <div class="rd__circuit">富士スピードウェイ<small>FUJI SPEEDWAY / SHIZUOKA</small></div>
+              <div class="rd__sub"><span><strong>池島 実紅</strong></span><span>TGM Grand Prix / #53</span></div>
+            </div>
+            <div class="rd__right">
+              <div class="rd__date">07.30<small>– 08.02</small></div>
+              <div class="rd__status is-coming">— UPCOMING</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AUGUST -->
+      <div class="month">
+        <div class="month__label">
+          <div class="month__num">08</div>
+          <div class="month__name">AUGUST</div>
+          <div class="month__year">2026</div>
+        </div>
+        <div class="month__rounds">
+          <div class="rd">
+            <div class="rd__rd">R4</div>
+            <div class="rd__body">
+              <div class="rd__cat">FIA-F4 JAPANESE CHAMPIONSHIP</div>
+              <div class="rd__circuit">鈴鹿サーキット<small>SUZUKA CIRCUIT / MIE</small></div>
+              <div class="rd__sub"><span><strong>池島 実紅</strong></span><span>TGM Grand Prix / #53</span></div>
+            </div>
+            <div class="rd__right">
+              <div class="rd__date">08.20<small>– 08.23</small></div>
+              <div class="rd__status is-coming">— UPCOMING</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEPTEMBER -->
+      <div class="month">
+        <div class="month__label">
+          <div class="month__num">09</div>
+          <div class="month__name">SEPTEMBER</div>
+          <div class="month__year">2026</div>
+        </div>
+        <div class="month__rounds">
+          <div class="rd">
+            <div class="rd__rd">R5</div>
+            <div class="rd__body">
+              <div class="rd__cat">FIA-F4 JAPANESE CHAMPIONSHIP</div>
+              <div class="rd__circuit">スポーツランドSUGO<small>SPORTSLAND SUGO / MIYAGI</small></div>
+              <div class="rd__sub"><span><strong>池島 実紅</strong></span><span>TGM Grand Prix / #53</span></div>
+            </div>
+            <div class="rd__right">
+              <div class="rd__date">09.17<small>– 09.20</small></div>
+              <div class="rd__status is-coming">— UPCOMING</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OCTOBER -->
+      <div class="month">
+        <div class="month__label">
+          <div class="month__num">10</div>
+          <div class="month__name">OCTOBER</div>
+          <div class="month__year">2026</div>
+        </div>
+        <div class="month__rounds">
+          <div class="rd">
+            <div class="rd__rd">R6</div>
+            <div class="rd__body">
+              <div class="rd__cat">FIA-F4 JAPANESE CHAMPIONSHIP</div>
+              <div class="rd__circuit">オートポリス<small>AUTOPOLIS / OITA</small></div>
+              <div class="rd__sub"><span><strong>池島 実紅</strong></span><span>TGM Grand Prix / #53</span></div>
+            </div>
+            <div class="rd__right">
+              <div class="rd__date">10.15<small>– 10.18</small></div>
+              <div class="rd__status is-coming">— UPCOMING</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NOVEMBER -->
+      <div class="month">
+        <div class="month__label">
+          <div class="month__num">11</div>
+          <div class="month__name">NOVEMBER</div>
+          <div class="month__year">2026</div>
+        </div>
+        <div class="month__rounds">
+          <div class="rd">
+            <div class="rd__rd">R7</div>
+            <div class="rd__body">
+              <div class="rd__cat">FIA-F4 JAPANESE CHAMPIONSHIP — SEASON FINALE</div>
+              <div class="rd__circuit">モビリティリゾートもてぎ<small>MOBILITY RESORT MOTEGI / TOCHIGI</small></div>
+              <div class="rd__sub"><span><strong>池島 実紅</strong></span><span>TGM Grand Prix / #53</span></div>
+            </div>
+            <div class="rd__right">
+              <div class="rd__date">11.05<small>– 11.08</small></div>
+              <div class="rd__status is-coming">— UPCOMING</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="note">
+      <strong>NOTE</strong> ／ 最新の年間スケジュールは <a href="https://fiaf4.jp/calendar/" target="_blank">FIA-F4 公式サイト</a> をご確認ください。
+    </div>
+  </section>
+
+  <div class="back">
+    <a href="index.html">← BACK TO FIA-F4 TOP</a>
+  </div>
+
+</body>
+</html>

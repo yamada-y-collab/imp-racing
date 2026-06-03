@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RACING — Impress International</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a0a0a;
+    --paper: #f5f4ef;
+    --paper-2: #ebe9e2;
+    --rouge: #ff1d4c;
+    --rouge-deep: #c81038;
+    --gold: #c8a96a;
+    --line: rgba(10,10,10,0.12);
+  }
+  *,*::before,*::after { box-sizing: border-box; margin:0; padding:0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: "Noto Sans JP", sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+
+  .siteheader { height: 64px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; padding: 0 32px; background: var(--paper); position: sticky; top: 0; z-index: 50; }
+  .siteheader__logo { font-family: "Bebas Neue", sans-serif; letter-spacing: 0.18em; font-size: 18px; }
+  .siteheader__logo span { color: var(--rouge); }
+  .siteheader nav ul { display: flex; gap: 28px; list-style: none; font-size: 12px; letter-spacing: 0.14em; }
+  .siteheader nav a:hover { color: var(--rouge); }
+  .siteheader nav .current { color: var(--rouge); border-bottom: 1px solid var(--rouge); padding-bottom: 4px; }
+  .crumb { padding: 18px 32px; font-size: 11px; letter-spacing: 0.14em; color: #777; border-bottom: 1px solid var(--line); }
+  .crumb span { color: var(--ink); }
+
+  /* ===== HERO ===== */
+  .hero { position: relative; height: 78vh; min-height: 580px; background: #050505; color: #fff; overflow: hidden; }
+  .hero__bg { position: absolute; inset: 0; background-image: url('images/ikejima_fuji_mountain.jpg'); background-size: cover; background-position: center 50%; filter: saturate(1.05) contrast(1.05); animation: heroZoom 18s ease-in-out infinite alternate; }
+  @keyframes heroZoom { from { transform: scale(1.02); } to { transform: scale(1.08); } }
+  .hero__scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.1) 35%, rgba(0,0,0,0.85) 100%), linear-gradient(90deg, rgba(0,0,0,0.6) 0%, transparent 50%); }
+  .hero__grain { position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 3px); pointer-events: none; }
+  .hero__corner { position: absolute; font-family: "Bebas Neue", sans-serif; letter-spacing: 0.25em; font-size: 10px; color: rgba(255,255,255,0.5); z-index: 2; }
+  .hero__corner--tl { top: 24px; left: 32px; }
+  .hero__corner--tr { top: 24px; right: 32px; }
+  .hero__content { position: relative; z-index: 2; height: 100%; display: flex; align-items: flex-end; padding: 0 32px 64px; }
+  .hero__inner { width: 100%; display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 32px; }
+  .hero__kicker { font-family: "Bebas Neue", sans-serif; font-size: 12px; letter-spacing: 0.4em; color: var(--rouge); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+  .hero__kicker::before { content: ""; width: 32px; height: 1px; background: var(--rouge); }
+  .hero__title { font-family: "Noto Serif JP", serif; font-weight: 900; font-size: clamp(48px, 7vw, 96px); line-height: 0.95; letter-spacing: 0.01em; }
+  .hero__title .lg { font-family: "Anton", sans-serif; display: block; font-size: clamp(80px, 12vw, 180px); letter-spacing: 0.02em; line-height: 0.85; }
+  .hero__sub { margin-top: 24px; font-size: 14px; line-height: 1.9; color: rgba(255,255,255,0.75); max-width: 540px; }
+  .hero__meter { text-align: right; border-left: 1px solid rgba(255,255,255,0.15); padding-left: 32px; }
+  .hero__meter dt { font-family: "Bebas Neue", sans-serif; font-size: 10px; letter-spacing: 0.3em; color: rgba(255,255,255,0.55); }
+  .hero__meter dd { font-family: "Anton", sans-serif; font-size: 56px; color: #fff; line-height: 1; margin: 6px 0 18px; }
+  .hero__meter dd small { font-size: 14px; color: var(--rouge); margin-left: 8px; letter-spacing: 0.1em; }
+
+  /* ===== TWO-SITE GATEWAY ===== */
+  .gateway { padding: 96px 32px; background: var(--ink); color: #fff; }
+  .gateway__head { max-width: 1280px; margin: 0 auto 48px; border-bottom: 1px solid rgba(255,255,255,0.18); padding-bottom: 18px; display: flex; align-items: flex-end; justify-content: space-between; }
+  .gateway__head h2 { font-family: "Anton", sans-serif; font-size: 64px; letter-spacing: 0.04em; line-height: 1; }
+  .gateway__head h2 small { display: block; font-family: "Noto Serif JP", serif; font-size: 14px; letter-spacing: 0.18em; margin-bottom: 8px; color: var(--rouge); }
+  .gateway__head .index { font-family: "Bebas Neue", sans-serif; letter-spacing: 0.2em; font-size: 12px; color: rgba(255,255,255,0.5); }
+
+  .gateway__grid { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .gate { position: relative; overflow: hidden; background: #1a1a1a; min-height: 560px; cursor: pointer; color: #fff; }
+  .gate__img { position: absolute; inset: 0; background-size: cover; background-position: center 30%; transition: transform 1s ease; filter: saturate(1.05); }
+  .gate:hover .gate__img { transform: scale(1.06); }
+  .gate__scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.4) 45%, rgba(0,0,0,0.95) 100%); }
+  .gate__inner { position: relative; z-index: 2; padding: 32px; display: flex; flex-direction: column; justify-content: space-between; min-height: 560px; }
+  .gate__top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .gate__cat { font-family: "Bebas Neue", sans-serif; font-size: 12px; letter-spacing: 0.3em; color: var(--rouge); display: inline-flex; align-items: center; gap: 12px; }
+  .gate__cat::before { content:""; width: 24px; height: 1px; background: var(--rouge); }
+  .gate__num { font-family: "Anton", sans-serif; font-size: 14px; letter-spacing: 0.2em; color: rgba(255,255,255,0.5); }
+  .gate__series { font-family: "Anton", sans-serif; font-size: clamp(48px, 5vw, 64px); letter-spacing: 0.02em; line-height: 0.95; margin-bottom: 18px; }
+  .gate__driver { font-family: "Noto Serif JP", serif; font-weight: 700; font-size: 22px; margin-bottom: 4px; }
+  .gate__driver-en { font-family: "Anton", sans-serif; font-size: 13px; letter-spacing: 0.22em; color: rgba(255,255,255,0.55); }
+  .gate__meta { margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.18); display: grid; grid-template-columns: 1fr auto; gap: 16px; font-size: 12px; letter-spacing: 0.08em; color: rgba(255,255,255,0.65); }
+  .gate__meta strong { color: #fff; }
+  .gate__cta { display: inline-flex; align-items: center; gap: 12px; margin-top: 18px; font-family: "Bebas Neue", sans-serif; font-size: 13px; letter-spacing: 0.25em; color: var(--rouge); transition: gap .25s ease; }
+  .gate:hover .gate__cta { gap: 20px; }
+  .gate__cta .arrow { font-family: "Anton", sans-serif; transition: transform .25s ease; }
+  .gate:hover .gate__cta .arrow { transform: translateX(4px); }
+  .gate--sf .gate__img { background-image: url('images/wurz_low_angle.jpg'); background-position: center 50%; }
+  .gate--f4 .gate__img { background-image: url('images/ikejima_race_battle.jpg'); background-position: center 30%; }
+
+  /* ===== NEXT RACE STRIP ===== */
+  .next-strip { padding: 64px 32px; background: var(--paper); }
+  .next-strip__inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 200px 1fr 1fr; gap: 32px; align-items: center; }
+  .next-strip__label { font-family: "Anton", sans-serif; font-size: 48px; line-height: 0.9; letter-spacing: 0.04em; }
+  .next-strip__label small { display: block; font-family: "Bebas Neue", sans-serif; font-size: 12px; letter-spacing: 0.25em; color: var(--rouge); margin-bottom: 8px; }
+  .next-card { border-left: 3px solid var(--rouge); padding: 12px 0 12px 20px; transition: transform .25s ease; cursor: pointer; }
+  .next-card:hover { transform: translateX(4px); }
+  .next-card__cat { font-family: "Bebas Neue", sans-serif; font-size: 11px; letter-spacing: 0.24em; color: var(--rouge); margin-bottom: 8px; }
+  .next-card__title { font-family: "Noto Serif JP", serif; font-weight: 700; font-size: 22px; line-height: 1.3; }
+  .next-card__title small { display: block; font-family: "Bebas Neue", sans-serif; font-size: 11px; letter-spacing: 0.18em; color: #888; margin-top: 4px; }
+  .next-card__date { margin-top: 10px; font-family: "Anton", sans-serif; font-size: 22px; }
+  .next-card__date small { font-family: "Bebas Neue", sans-serif; font-size: 11px; letter-spacing: 0.2em; color: #888; margin-left: 8px; }
+  .next-card__driver { margin-top: 8px; font-size: 12px; color: #555; }
+  .next-card__driver strong { color: var(--ink); font-weight: 700; }
+
+  .endnote { background: var(--ink); color: rgba(255,255,255,0.5); padding: 32px; text-align: center; font-size: 11px; letter-spacing: 0.2em; font-family: "Bebas Neue", sans-serif; }
+  .endnote span { color: var(--rouge); }
+
+  @media (max-width: 980px) {
+    .gateway__grid { grid-template-columns: 1fr; }
+    .next-strip__inner { grid-template-columns: 1fr; gap: 24px; }
+    .next-strip__label { font-size: 36px; }
+    .hero__inner { grid-template-columns: 1fr; }
+    .hero__meter { border-left: 0; padding-left: 0; text-align: left; margin-top: 16px; }
+    .siteheader nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="siteheader">
+    <div class="siteheader__logo">IMPRESS<span>.</span> INTERNATIONAL</div>
+    <nav>
+      <ul>
+        <li><a href="#">COMPANY</a></li>
+        <li><a href="#">BUSINESS</a></li>
+        <li><a href="index.html" class="current">RACING</a></li>
+        <li><a href="#">RECRUIT</a></li>
+        <li><a href="#">CONTACT</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="crumb">HOME / <span>RACING SPONSORSHIP</span></div>
+
+  <section class="hero">
+    <div class="hero__bg"></div>
+    <div class="hero__scrim"></div>
+    <div class="hero__grain"></div>
+    <div class="hero__corner hero__corner--tl">IMPRESS INTERNATIONAL — RACING ACTIVITY / SEASON 2026</div>
+    <div class="hero__corner hero__corner--tr">SUPER FORMULA / FIA-F4</div>
+    <div class="hero__content">
+      <div class="hero__inner">
+        <div>
+          <div class="hero__kicker">SUPPORTING THE NEXT GENERATION</div>
+          <h1 class="hero__title">走り続ける、<span class="lg">STILL RACING.</span></h1>
+          <p class="hero__sub">
+            インプレスインターナショナルは、世界の頂点を目指す若きレーサーを<br>
+            スポンサーとして支援しています。シーズン2026、彼らの軌跡を、ここから。
+          </p>
+        </div>
+        <dl class="hero__meter">
+          <dt>SEASON</dt>
+          <dd>2026<small>NOW</small></dd>
+          <dt>SUPPORTED SERIES</dt>
+          <dd>02</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="gateway">
+    <div class="gateway__head">
+      <h2><small>応援する2つのカテゴリー</small>CHOOSE YOUR SERIES</h2>
+      <div class="index">— 02 SERIES</div>
+    </div>
+    <div class="gateway__grid">
+
+      <a class="gate gate--sf" href="sf/index.html">
+        <div class="gate__img"></div>
+        <div class="gate__scrim"></div>
+        <div class="gate__inner">
+          <div class="gate__top">
+            <span class="gate__cat">CATEGORY 01</span>
+            <span class="gate__num">— 01 / 02</span>
+          </div>
+          <div>
+            <div class="gate__series">SUPER<br>FORMULA</div>
+            <div class="gate__driver">チャーリー・ヴルツ</div>
+            <div class="gate__driver-en">CHARLIE WURZ</div>
+            <div class="gate__meta">
+              <span>TEAM <strong>TEAM GOH</strong></span>
+              <span>#53</span>
+            </div>
+            <span class="gate__cta">VIEW SUPER FORMULA SITE<span class="arrow">→</span></span>
+          </div>
+        </div>
+      </a>
+
+      <a class="gate gate--f4" href="f4/index.html">
+        <div class="gate__img"></div>
+        <div class="gate__scrim"></div>
+        <div class="gate__inner">
+          <div class="gate__top">
+            <span class="gate__cat">CATEGORY 02</span>
+            <span class="gate__num">— 02 / 02</span>
+          </div>
+          <div>
+            <div class="gate__series">FIA-F4<br>CHAMPIONSHIP</div>
+            <div class="gate__driver">池島 実紅</div>
+            <div class="gate__driver-en">MIKU IKEJIMA</div>
+            <div class="gate__meta">
+              <span>TEAM <strong>TGM Grand Prix</strong></span>
+              <span>#53</span>
+            </div>
+            <span class="gate__cta">VIEW FIA-F4 SITE<span class="arrow">→</span></span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="next-strip">
+    <div class="next-strip__inner">
+      <div class="next-strip__label">
+        <small>NEXT RACE</small>
+        次戦情報
+      </div>
+      <a class="next-card" href="sf/schedule.html">
+        <div class="next-card__cat">SUPER FORMULA — RD.04 / RD.05</div>
+        <div class="next-card__title">鈴鹿サーキット<small>SUZUKA CIRCUIT / MIE</small></div>
+        <div class="next-card__date">05.22<small>– 05.24</small></div>
+        <div class="next-card__driver"><strong>チャーリー・ヴルツ</strong> ／ TEAM GOH</div>
+      </a>
+      <a class="next-card" href="f4/schedule.html">
+        <div class="next-card__cat">FIA-F4 — RD.02</div>
+        <div class="next-card__title">岡山国際サーキット<small>OKAYAMA INTERNATIONAL CIRCUIT</small></div>
+        <div class="next-card__date">06.11<small>– 06.14</small></div>
+        <div class="next-card__driver"><strong>池島 実紅</strong> ／ TGM Grand Prix #53</div>
+      </a>
+    </div>
+  </section>
+
+  <div class="endnote">IMPRESS INTERNATIONAL — RACING SPONSORSHIP / 2026 <span>●</span> STILL RACING.</div>
+
+</body>
+</html>

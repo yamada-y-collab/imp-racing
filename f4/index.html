@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIA-F4 — Impress International Racing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/shared.css">
+<style>
+  .hero--f4 .hero__bg { background-image: url('images/ikejima_fuji_mountain.jpg'); background-position: center 35%; }
+
+  /* DRIVER FEATURE */
+  .feature {
+    padding: 96px 32px;
+    background: var(--paper);
+  }
+  .feature__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .feature__img {
+    aspect-ratio: 4/5;
+    background-image: url('images/ikejima_portrait_tgmgp.png');
+    background-size: cover;
+    background-position: center 25%;
+    position: relative;
+  }
+  .feature__img::after {
+    content: "";
+    position: absolute; top: 16px; left: 16px;
+    width: 100%; height: 100%;
+    border: 1px solid var(--rouge);
+    z-index: -1;
+  }
+  .feature__kicker {
+    font-family: "Bebas Neue", sans-serif;
+    letter-spacing: 0.3em; font-size: 12px; color: var(--rouge);
+    margin-bottom: 18px; display: flex; align-items: center; gap: 12px;
+  }
+  .feature__kicker::before { content:""; width: 32px; height: 1px; background: var(--rouge); }
+  .feature__name-jp {
+    font-family: "Noto Serif JP", serif; font-weight: 900;
+    font-size: 52px; line-height: 1; letter-spacing: 0.02em;
+  }
+  .feature__name-en {
+    font-family: "Anton", sans-serif; font-size: 22px;
+    letter-spacing: 0.2em; color: #777; margin-top: 10px;
+  }
+  .feature__tagline {
+    margin-top: 28px; padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-family: "Noto Serif JP", serif;
+    font-size: 20px; font-weight: 700; line-height: 1.6;
+  }
+  .feature__tagline em { font-style: normal; color: var(--rouge); }
+  .feature__meta {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+    margin-top: 28px;
+  }
+  .feature__meta dt { font-family: "Bebas Neue", sans-serif; font-size: 10px; letter-spacing: 0.25em; color: #777; }
+  .feature__meta dd { font-family: "Noto Serif JP", serif; font-weight: 700; font-size: 15px; margin-top: 4px; }
+  .feature__cta {
+    display: inline-flex; align-items: center; gap: 12px; margin-top: 32px;
+    padding: 14px 24px; background: var(--ink); color: #fff;
+    font-family: "Bebas Neue", sans-serif; font-size: 13px; letter-spacing: 0.22em;
+    transition: background .25s ease, gap .25s ease;
+  }
+  .feature__cta:hover { background: var(--rouge); gap: 18px; }
+
+  /* STATS BAND */
+  .stats { padding: 80px 32px; background: var(--ink); color: #fff; }
+  .stats__inner {
+    max-width: 1280px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .stat {
+    background: var(--ink); padding: 36px 28px;
+  }
+  .stat dt { font-family: "Bebas Neue", sans-serif; font-size: 11px; letter-spacing: 0.22em; color: rgba(255,255,255,0.55); }
+  .stat dd { font-family: "Anton", sans-serif; font-size: 56px; line-height: 1; margin: 14px 0 6px; }
+  .stat dd small {
+    font-family: "Noto Sans JP", sans-serif; font-size: 12px;
+    color: rgba(255,255,255,0.55); margin-left: 8px; letter-spacing: 0.1em;
+  }
+  .stat__note { font-size: 11px; color: rgba(255,255,255,0.65); line-height: 1.7; }
+  .stat--hilite dd { color: var(--rouge); }
+
+  @media (max-width: 900px) {
+    .feature__inner { grid-template-columns: 1fr; gap: 32px; }
+    .feature__meta { grid-template-columns: 1fr; }
+    .stats__inner { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+  <header class="siteheader">
+    <div class="siteheader__logo">IMPRESS<span>.</span> INTERNATIONAL</div>
+    <nav>
+      <ul>
+        <li><a href="#">COMPANY</a></li>
+        <li><a href="#">BUSINESS</a></li>
+        <li><a href="../index.html" class="current">RACING</a></li>
+        <li><a href="#">RECRUIT</a></li>
+        <li><a href="#">CONTACT</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="subheader">
+    <div class="subheader__name">FIA-F4 <small>JAPANESE CHAMPIONSHIP 2026</small></div>
+    <nav>
+      <ul>
+        <li><a href="index.html" class="current">TOP</a></li>
+        <li><a href="schedule.html">SCHEDULE</a></li>
+        <li><a href="driver.html">DRIVER</a></li>
+        <li><a href="results.html">RESULTS</a></li>
+        <li><a href="../index.html">← BACK</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="crumb">HOME / <a href="../index.html">RACING</a> / <span>FIA-F4</span></div>
+
+  <section class="hero hero--f4">
+    <div class="hero__bg"></div>
+    <div class="hero__scrim"></div>
+    <div class="hero__grain"></div>
+    <div class="hero__corner hero__corner--tl">SERIES 02 — FORMULA 4 / GATEWAY TO THE TOP</div>
+    <div class="hero__corner hero__corner--tr">2026 SEASON / TGMGP #53</div>
+    <div class="hero__content">
+      <div class="hero__inner">
+        <div>
+          <div class="hero__kicker">CATEGORY 02 / FIA-F4 JAPANESE CHAMPIONSHIP</div>
+          <h1 class="hero__title">
+            世界基準への、第一歩。
+            <span class="lg">FIA-F4.</span>
+          </h1>
+          <p class="hero__sub">
+            フォーミュラへの登竜門、FIA-F4 JAPANESE CHAMPIONSHIP。<br>
+            2025年GR86/BRZ CUPで女性初の優勝を遂げた池島実紅選手が、TGM Grand Prixから参戦。
+          </p>
+          <div style="margin-top:28px; padding-top:24px; border-top: 1px solid rgba(255,255,255,0.18); display:flex; align-items:center; gap:18px;">
+            <small style="font-family:'Bebas Neue';font-size:10px;letter-spacing:0.25em;color:rgba(255,255,255,0.5);">TEAM ─</small>
+            <img src="../assets/logos/tgm_light.png" alt="TGM Grand Prix" style="height:56px;width:auto;">
+          </div>
+        </div>
+        <dl class="hero__meter">
+          <dt>ROUNDS</dt>
+          <dd>07<small>RACES</small></dd>
+          <dt>DRIVER</dt>
+          <dd>01</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section__head">
+      <h2><small>このサイト内で巡る</small>HUB</h2>
+      <div class="index">— 03 SECTIONS</div>
+    </div>
+    <div class="hub__grid">
+      <a class="hub__card" href="schedule.html">
+        <div class="hub__card__num">01 / SECTION</div>
+        <div>
+          <div class="hub__card__title-jp">年間<br>スケジュール</div>
+          <div class="hub__card__title-en">RACE CALENDAR 2026</div>
+          <p class="hub__card__desc">2026年シーズン、全7大会のレースカレンダー。次戦は6月11-14日、岡山国際。</p>
+          <span class="hub__card__arrow">VIEW SCHEDULE →</span>
+        </div>
+      </a>
+      <a class="hub__card" href="driver.html">
+        <div class="hub__card__num">02 / SECTION</div>
+        <div>
+          <div class="hub__card__title-jp">ドライバー<br>詳細</div>
+          <div class="hub__card__title-en">DRIVER PROFILE</div>
+          <p class="hub__card__desc">池島実紅選手（TGMGP #53）のプロフィール・経歴・シーズンの戦績。</p>
+          <span class="hub__card__arrow">VIEW PROFILE →</span>
+        </div>
+      </a>
+      <a class="hub__card" href="results.html">
+        <div class="hub__card__num">03 / SECTION</div>
+        <div>
+          <div class="hub__card__title-jp">レース<br>結果</div>
+          <div class="hub__card__title-en">RACE RESULTS</div>
+          <p class="hub__card__desc">レース後に公式リザルトをPDFで掲載。各ラウンドの結果をシンプルに記録。</p>
+          <span class="hub__card__arrow">VIEW RESULTS →</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="feature">
+    <div class="feature__inner">
+      <div class="feature__img"></div>
+      <div>
+        <div class="feature__kicker">SPONSORED DRIVER — 2026</div>
+        <h2 class="feature__name-jp">池島 実紅</h2>
+        <div class="feature__name-en">MIKU IKEJIMA</div>
+        <p class="feature__tagline">
+          2025年 GR86/BRZ CUPで<em>女性初の優勝</em>。<br>
+          その勢いのまま、フォーミュラへ。
+        </p>
+        <dl class="feature__meta">
+          <div><dt>CATEGORY</dt><dd>FIA-F4 JAPAN</dd></div>
+          <div><dt>TEAM</dt><dd>TGM Grand Prix</dd></div>
+          <div><dt>CAR No.</dt><dd>#53</dd></div>
+          <div><dt>BORN</dt><dd>1997.01.29 / 埼玉</dd></div>
+        </dl>
+        <a class="feature__cta" href="driver.html">VIEW FULL PROFILE →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="section__head" style="max-width:1280px;margin:0 auto 48px;">
+      <h2><small>SECTION</small>HIGHLIGHTS</h2>
+      <div class="index">— CAREER</div>
+    </div>
+    <dl class="stats__inner">
+      <div class="stat stat--hilite">
+        <dt>2025 — HIGHLIGHT</dt>
+        <dd>1<small>st</small></dd>
+        <div class="stat__note">GR86/BRZ CUP<br>女性ドライバー初の優勝</div>
+      </div>
+      <div class="stat">
+        <dt>CAREER START</dt>
+        <dd>2009</dd>
+        <div class="stat__note">CA KART RACE YAMAHA Jrクラス</div>
+      </div>
+      <div class="stat">
+        <dt>SERIES TITLES</dt>
+        <dd>03<small>titles</small></dd>
+        <div class="stat__note">JAF-F4 / 富士チャンピオン<br>WOMAN Series AWARD など</div>
+      </div>
+      <div class="stat">
+        <dt>2024 — SUPER ENDURO</dt>
+        <dd>3<small>rd</small></dd>
+        <div class="stat__note">Super耐久24h クラス3位</div>
+      </div>
+    </dl>
+  </section>
+
+  <div class="endnote">IMPRESS INTERNATIONAL — FIA-F4 / 2026 <span>●</span> STILL RACING.</div>
+
+</body>
+</html>

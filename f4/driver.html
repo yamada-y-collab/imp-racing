@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>池島 実紅 — FIA-F4 / Impress International</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/shared.css">
+<style>
+  .profile {
+    position: relative; background: var(--ink); color: #fff;
+    overflow: hidden; padding: 64px 32px 80px;
+  }
+  .profile__bg {
+    position: absolute; inset: 0;
+    background-image: url('images/ikejima_race_action.jpg');
+    background-size: cover; background-position: center 45%;
+    opacity: 0.4; filter: grayscale(0.18) contrast(1.05);
+  }
+  .profile__bg::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(10,10,10,0.7) 0%, rgba(10,10,10,0.4) 50%, rgba(10,10,10,0.95) 100%);
+  }
+  .profile__inner {
+    position: relative; max-width: 1280px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: end;
+  }
+  .profile__left { z-index: 2; }
+  .profile__tag {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 12px; letter-spacing: 0.3em; color: var(--rouge);
+    display: flex; align-items: center; gap: 12px; margin-bottom: 24px;
+  }
+  .profile__tag::before { content:""; width: 32px; height: 1px; background: var(--rouge); }
+  .profile__bignum {
+    font-family: "Anton", sans-serif;
+    font-size: 240px; line-height: 0.85;
+    color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,0.4);
+    position: absolute; right: 32px; top: 24px; pointer-events: none;
+  }
+  .profile__name-jp {
+    font-family: "Noto Serif JP", serif; font-weight: 900;
+    font-size: clamp(48px, 6vw, 80px); line-height: 1; letter-spacing: 0.04em;
+  }
+  .profile__name-en {
+    font-family: "Anton", sans-serif; font-size: 28px;
+    letter-spacing: 0.2em; color: rgba(255,255,255,0.5); margin-top: 12px;
+  }
+  .profile__tagline {
+    margin-top: 28px; padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.18);
+    font-family: "Noto Serif JP", serif;
+    font-size: 22px; font-weight: 700; line-height: 1.6;
+  }
+  .profile__tagline em { font-style: normal; color: var(--rouge); }
+  .profile__meta {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+    margin-top: 36px; padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.18);
+  }
+  .profile__meta dt { font-family: "Bebas Neue", sans-serif; font-size: 10px; letter-spacing: 0.25em; color: rgba(255,255,255,0.5); }
+  .profile__meta dd { font-family: "Noto Serif JP", serif; font-weight: 700; font-size: 16px; margin-top: 6px; }
+  .profile__meta dd small { display: block; font-weight: 400; font-size: 11px; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; margin-top: 4px; }
+  .profile__right { position: relative; z-index: 2; }
+  .profile__photo {
+    aspect-ratio: 4/5;
+    background-image: url('images/ikejima_portrait_helmet_new.jpg');
+    background-size: cover; background-position: center 30%; position: relative;
+  }
+  .profile__photo::after {
+    content: ""; position: absolute; top: 16px; left: 16px;
+    width: 100%; height: 100%; border: 1px solid var(--rouge); z-index: -1;
+  }
+  .profile__photo-meta {
+    position: absolute; bottom: 12px; left: 12px; right: 12px;
+    display: flex; justify-content: space-between;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 10px; letter-spacing: 0.2em;
+    color: #fff; background: rgba(0,0,0,0.5); padding: 6px 10px;
+  }
+
+  /* STATS */
+  .stats { padding: 80px 32px; background: var(--paper); }
+  .stats__inner {
+    max-width: 1280px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: var(--line); border: 1px solid var(--line);
+  }
+  .stat { background: var(--paper); padding: 36px 28px; }
+  .stat dt { font-family: "Bebas Neue", sans-serif; font-size: 11px; letter-spacing: 0.22em; color: #777; }
+  .stat dd { font-family: "Anton", sans-serif; font-size: 56px; line-height: 1; margin: 14px 0 6px; }
+  .stat dd small { font-family: "Noto Sans JP", sans-serif; font-size: 12px; color: #777; margin-left: 8px; letter-spacing: 0.1em; }
+  .stat__note { font-size: 11px; color: #777; line-height: 1.7; }
+  .stat--hilite dd { color: var(--rouge); }
+
+  /* STORY */
+  .story { padding: 80px 32px; background: var(--paper-2); }
+  .story__inner { max-width: 980px; margin: 0 auto; }
+  .story__kicker { font-family: "Bebas Neue", sans-serif; letter-spacing: 0.3em; font-size: 12px; color: var(--rouge); margin-bottom: 18px; }
+  .story__title {
+    font-family: "Noto Serif JP", serif; font-weight: 900;
+    font-size: clamp(28px, 3vw, 42px); line-height: 1.5; margin-bottom: 32px;
+  }
+  .story__title em { font-style: normal; color: var(--rouge); }
+  .story__text p { font-size: 15px; line-height: 2; color: #2a2a2a; margin-bottom: 20px; }
+
+  /* CAREER */
+  .career { padding: 80px 32px; background: var(--paper); }
+  .career__head {
+    max-width: 1100px; margin: 0 auto 48px;
+    border-bottom: 1px solid var(--ink); padding-bottom: 18px;
+    display: flex; align-items: flex-end; justify-content: space-between;
+  }
+  .career__head h2 { font-family: "Anton", sans-serif; font-size: 56px; letter-spacing: 0.04em; line-height: 1; }
+  .career__head h2 small {
+    display: block; font-family: "Noto Serif JP", serif;
+    font-size: 14px; letter-spacing: 0.18em;
+    margin-bottom: 8px; color: var(--rouge);
+  }
+  .career__list { max-width: 1100px; margin: 0 auto; position: relative; }
+  .career__list::before {
+    content: ""; position: absolute; top: 0; bottom: 0; left: 80px;
+    width: 1px; background: var(--line);
+  }
+  .year {
+    display: grid; grid-template-columns: 80px 1fr; gap: 32px;
+    align-items: flex-start; padding: 20px 0; position: relative;
+  }
+  .year::before {
+    content: ""; position: absolute; left: 76px; top: 28px;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--ink); border: 2px solid var(--paper);
+  }
+  .year--win::before { background: var(--rouge); box-shadow: 0 0 0 4px rgba(255,29,76,0.15); }
+  .year__y { font-family: "Anton", sans-serif; font-size: 22px; letter-spacing: 0.04em; }
+  .year--win .year__y { color: var(--rouge); }
+  .year__body { padding-left: 24px; font-size: 13px; line-height: 1.9; color: #333; }
+  .year__body .badge {
+    display: inline-block; background: var(--rouge); color: #fff;
+    font-family: "Bebas Neue", sans-serif; font-size: 10px;
+    letter-spacing: 0.18em; padding: 2px 8px; margin-left: 6px; vertical-align: middle;
+  }
+
+  /* GALLERY */
+  .gallery { padding: 80px 32px 100px; background: var(--ink); }
+  .gallery__head {
+    max-width: 1280px; margin: 0 auto 32px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding-bottom: 18px; color: #fff;
+  }
+  .gallery__head h2 { font-family: "Anton", sans-serif; font-size: 48px; letter-spacing: 0.04em; line-height: 1; }
+  .gallery__head h2 small {
+    display: block; font-family: "Noto Serif JP", serif;
+    font-size: 13px; letter-spacing: 0.18em; margin-bottom: 8px; color: var(--rouge);
+  }
+  .gallery__grid {
+    max-width: 1280px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 140px; gap: 12px;
+  }
+  .g { background-size: cover; background-position: center; overflow: hidden; transition: transform .5s ease; }
+  .g:hover { transform: scale(1.02); }
+  .g--1 { grid-column: span 6; grid-row: span 3; background-image: url('images/ikejima_fuji_mountain.jpg'); }
+  .g--2 { grid-column: span 3; grid-row: span 2; background-image: url('images/ikejima_portrait_helmet_new.jpg'); background-position: center 20%; }
+  .g--3 { grid-column: span 3; grid-row: span 2; background-image: url('images/ikejima_race_panning.jpg'); }
+  .g--4 { grid-column: span 4; grid-row: span 1; background-image: url('images/ikejima_race_battle.jpg'); }
+  .g--5 { grid-column: span 4; grid-row: span 1; background-image: url('images/ikejima_race_front.jpg'); }
+  .g--6 { grid-column: span 4; grid-row: span 1; background-image: url('images/ikejima_race_corner.jpg'); }
+
+  @media (max-width: 900px) {
+    .profile__inner { grid-template-columns: 1fr; }
+    .profile__bignum { font-size: 140px; right: 16px; top: 8px; }
+    .profile__meta { grid-template-columns: repeat(2, 1fr); }
+    .stats__inner { grid-template-columns: repeat(2, 1fr); }
+    .gallery__grid { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 120px; }
+    .g--1 { grid-column: span 6; grid-row: span 2; }
+    .g--2,.g--3 { grid-column: span 3; grid-row: span 2; }
+    .g--4,.g--5 { grid-column: span 3; grid-row: span 1; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="siteheader">
+    <div class="siteheader__logo">IMPRESS<span>.</span> INTERNATIONAL</div>
+    <nav>
+      <ul>
+        <li><a href="#">COMPANY</a></li>
+        <li><a href="#">BUSINESS</a></li>
+        <li><a href="../index.html" class="current">RACING</a></li>
+        <li><a href="#">RECRUIT</a></li>
+        <li><a href="#">CONTACT</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="subheader">
+    <div class="subheader__name">FIA-F4 <small>JAPANESE CHAMPIONSHIP 2026</small></div>
+    <nav>
+      <ul>
+        <li><a href="index.html">TOP</a></li>
+        <li><a href="schedule.html">SCHEDULE</a></li>
+        <li><a href="driver.html" class="current">DRIVER</a></li>
+        <li><a href="results.html">RESULTS</a></li>
+        <li><a href="../index.html">← BACK</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="crumb">HOME / <a href="../index.html">RACING</a> / <a href="index.html">FIA-F4</a> / <span>池島 実紅</span></div>
+
+  <section class="profile">
+    <div class="profile__bg"></div>
+    <div class="profile__bignum">53</div>
+    <div class="profile__inner">
+      <div class="profile__left">
+        <div class="profile__tag">SPONSORED DRIVER — 2026</div>
+        <h1 class="profile__name-jp">池島 実紅</h1>
+        <div class="profile__name-en">MIKU IKEJIMA</div>
+        <p class="profile__tagline">
+          <em>世界基準</em>で勝てる、女性レーサー。
+        </p>
+        <dl class="profile__meta">
+          <div><dt>BORN</dt><dd>1997.01.29<small>SAITAMA</small></dd></div>
+          <div><dt>CATEGORY</dt><dd>FIA-F4<small>JAPANESE CHAMPIONSHIP</small></dd></div>
+          <div><dt>TEAM</dt><dd>TGM Grand Prix<small>2026 SEASON</small></dd></div>
+          <div><dt>CAR No.</dt><dd>#53<small>F4 / 2026</small></dd></div>
+        </dl>
+      </div>
+
+      <div class="profile__right">
+        <div class="profile__photo">
+          <div class="profile__photo-meta">
+            <span>IKEJIMA / 2026</span>
+            <span>FIA-F4 / TGMGP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <dl class="stats__inner">
+      <div class="stat stat--hilite">
+        <dt>2025 — HIGHLIGHT</dt>
+        <dd>1<small>st</small></dd>
+        <div class="stat__note">GR86/BRZ CUP<br>女性ドライバー初の優勝</div>
+      </div>
+      <div class="stat">
+        <dt>CAREER START</dt>
+        <dd>2009</dd>
+        <div class="stat__note">CA KART RACE YAMAHA Jrクラス</div>
+      </div>
+      <div class="stat">
+        <dt>SERIES TITLES</dt>
+        <dd>03<small>titles</small></dd>
+        <div class="stat__note">JAF-F4 / 富士チャンピオン<br>WOMAN Series AWARD など</div>
+      </div>
+      <div class="stat">
+        <dt>2024 — SUPER ENDURO</dt>
+        <dd>3<small>rd</small></dd>
+        <div class="stat__note">Super耐久24h クラス3位</div>
+      </div>
+    </dl>
+  </section>
+
+  <section class="story">
+    <div class="story__inner">
+      <div class="story__kicker">— STORY</div>
+      <h2 class="story__title">
+        2025年、GR86/BRZ CUPで<em>女性初の優勝</em>。<br>
+        その勢いのまま、フォーミュラへ。
+      </h2>
+      <div class="story__text">
+        <p>
+          埼玉県出身、1997年生まれの池島実紅選手は、12歳でカートデビュー。
+          2015年にFIA-F4 JAPANESE CHAMPIONSHIPに参戦して以降、FIA-F4、GR86/BRZ Race、スーパー耐久など、幅広いカテゴリーで結果を残してきました。
+        </p>
+        <p>
+          2025年、GR86/BRZ CUPにおいて<strong>女性初の優勝</strong>を達成。シリーズチャンピオンを獲得した2018年WOMAN Series AWARD以来、トップカテゴリーで存在感を放ち続けています。
+        </p>
+        <p>
+          2026年、ふたたびFIA-F4 JAPANESE CHAMPIONSHIPの舞台へ。インプレスインターナショナルは、世界基準で勝てる女性レーサーを目指す池島選手の挑戦を、スポンサーとして支援します。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section style="background:var(--paper); padding:80px 32px;">
+    <div style="max-width:1280px; margin:0 auto; display:grid; grid-template-columns:280px 1fr; gap:56px; align-items:center;">
+      <div style="background:var(--ink); padding:48px 32px; display:flex; align-items:center; justify-content:center; aspect-ratio:1/1;">
+        <img src="../assets/logos/tgm_light.png" alt="TGM Grand Prix" style="width:100%; max-width:200px;">
+      </div>
+      <div>
+        <h3 style="font-family:'Anton',sans-serif; font-size:48px; letter-spacing:0.04em; line-height:1; margin-bottom:12px;">
+          <small style="display:block; font-family:'Bebas Neue',sans-serif; font-size:12px; letter-spacing:0.25em; color:var(--rouge); margin-bottom:12px;">PARTNER TEAM</small>
+          TGM GRAND PRIX
+        </h3>
+        <p style="font-size:14px; line-height:1.9; color:#333; margin-top:18px; max-width:720px;">
+          池島実紅選手が2026年シーズンを戦うチーム。TGM Grand Prix（TGMGP）は、FIA-F4 JAPANESE CHAMPIONSHIPに継続参戦するレーシングチーム。
+          シンボルカラーであるマゼンタピンクをアクセントに、若手ドライバーの育成と上位カテゴリーへのステップアップを支援している。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="career">
+    <div class="career__head">
+      <h2><small>SECTION</small>CAREER</h2>
+      <div style="font-family:'Bebas Neue';letter-spacing:0.2em;font-size:12px;color:#777;">— 2009–2025</div>
+    </div>
+    <div class="career__list">
+
+      <div class="year year--win">
+        <div class="year__y">2025</div>
+        <div class="year__body">GR86/BRZ CUP — <strong>女性初の優勝</strong> <span class="badge">FIRST WIN</span></div>
+      </div>
+      <div class="year">
+        <div class="year__y">2024</div>
+        <div class="year__body">ロードスターカップ1.5オープンクラス 2大会参戦 ／ GR86/BRZ Cup 4大会参戦（鈴鹿大会 ポールポジション・ファステスト獲得／茂木大会 5位入賞）／ KYOJO CUPスポット 2大会参戦 ／ Super耐久24h クラス3位</div>
+      </div>
+      <div class="year year--win">
+        <div class="year__y">2023</div>
+        <div class="year__body">ロードスターカップ1.5オープンクラス 2レーススポット参戦（最高順位2位）／ GR86/BRZ Cup 3レーススポット参戦（最高順位6位）</div>
+      </div>
+      <div class="year">
+        <div class="year__y">2022</div>
+        <div class="year__body">茂木カートシリーズ スーパーリードクラス <strong>シリーズチャンピオン</strong> <span class="badge">CHAMPION</span></div>
+      </div>
+      <div class="year">
+        <div class="year__y">2021</div>
+        <div class="year__body">GR86/BRZ Race フル参戦 ポイント獲得（最高順位4位）</div>
+      </div>
+      <div class="year">
+        <div class="year__y">2020</div>
+        <div class="year__body">GR86/BRZ Race フル参戦 ポイント獲得</div>
+      </div>
+      <div class="year">
+        <div class="year__y">2019</div>
+        <div class="year__body">GR86/BRZ Race フル参戦 ポイント獲得</div>
+      </div>
+      <div class="year year--win">
+        <div class="year__y">2018</div>
+        <div class="year__body">FIA-F4 JAPANESE CHAMPIONSHIP ／ GR86/BRZ Race クラブマンシリーズ参戦 ／ Rd.3・4 FUJIインディペンデントカップ 2戦連続優勝 ／ WOMAN 2018 Series AWARD 獲得 ／ 富士チャンピオンレース ロードスターカップ <strong>シリーズチャンピオン獲得</strong> <span class="badge">CHAMPION</span> ／ 競争女子選手権スポット参戦（シリーズ3位）</div>
+      </div>
+      <div class="year">
+        <div class="year__y">2017</div>
+        <div class="year__body">FIA-F4 JAPANESE CHAMPIONSHIP SUGO／富士 2大会参戦 ／ 岡山 2大会参戦</div>
+      </div>
+      <div class="year year--win">
+        <div class="year__y">2016</div>
+        <div class="year__body">JAF-F4 A2クラス 富士大会クラス2位 ／ 日本一決定戦鈴鹿クラス<strong>優勝</strong> <span class="badge">WIN</span></div>
+      </div>
+      <div class="year">
+        <div class="year__y">2015</div>
+        <div class="year__body">FIA-F4 JAPANESE CHAMPIONSHIP 第3・4戦 第5・6戦 富士参戦</div>
+      </div>
+      <div class="year year--win">
+        <div class="year__y">2014</div>
+        <div class="year__body">スーパーカートカップ SK4クラス SK cupシリーズ2位 ／ 筑波シリーズ3位 ／ 富士チャンピオンシリーズ／<strong>岡山国際シリーズ</strong> 優勝 <span class="badge">WIN</span></div>
+      </div>
+      <div class="year">
+        <div class="year__y">2013</div>
+        <div class="year__body">RedBull KART FIGHT北関東大会 NTC Jrクラス 優勝</div>
+      </div>
+      <div class="year">
+        <div class="year__y">2009</div>
+        <div class="year__body">CA KART RACE YAMAHA Jrクラス シリーズ4位（キャリアスタート）</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="gallery">
+    <div class="gallery__head">
+      <h2><small>SECTION</small>GALLERY</h2>
+    </div>
+    <div class="gallery__grid">
+      <div class="g g--1"></div>
+      <div class="g g--2"></div>
+      <div class="g g--3"></div>
+      <div class="g g--4"></div>
+      <div class="g g--5"></div>
+      <div class="g g--6"></div>
+    </div>
+  </section>
+
+  <div class="back">
+    <a href="index.html">← BACK TO FIA-F4 TOP</a>
+  </div>
+
+</body>
+</html>
