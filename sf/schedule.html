@@ -110,6 +110,12 @@
   @keyframes pulse2 { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
   .rd__status.is-done { color: #999; }
   .rd__status.is-coming { color: #999; }
+  a.rd { text-decoration: none; color: inherit; display: grid; }
+  .rd__result { display: flex; flex-direction: column; gap: 5px; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); }
+  .rd__result-row { display: flex; align-items: baseline; gap: 10px; font-size: 12px; color: #555; }
+  .rd__result-rd { font-family: "Bebas Neue", sans-serif; font-size: 11px; letter-spacing: 0.14em; color: var(--rouge); min-width: 38px; }
+  .rd__result-fig b { font-family: "Anton", sans-serif; font-size: 17px; color: var(--ink); }
+  .rd__result-fig small { color: #999; font-size: 10px; margin-left: 6px; }
 
   @media (max-width: 900px) {
     .month { grid-template-columns: 1fr; gap: 12px; }
@@ -162,30 +168,37 @@
           </div>
         </div>
         <div class="month__rounds">
-          <div class="rd">
+          <a class="rd" href="results.html">
             <div class="rd__rd">R1<small>R2</small></div>
             <div class="rd__body">
               <div class="rd__cat">SUPER FORMULA — ROUND 01 / 02</div>
               <div class="rd__circuit">モビリティリゾートもてぎ<small>MOBILITY RESORT MOTEGI / TOCHIGI</small></div>
               <div class="rd__sub"><span><strong>チャーリー・ブルツ</strong></span><span>TEAM GOH</span></div>
+              <div class="rd__result">
+                <div class="rd__result-row"><span class="rd__result-rd">RD.1</span><span class="rd__result-fig">予選 <b>19</b>位 → 決勝 <b>15</b>位<small>/24台・雨</small></span></div>
+                <div class="rd__result-row"><span class="rd__result-rd">RD.2</span><span class="rd__result-fig">予選 <b>23</b>位 → 決勝 <b>20</b>位<small>/24台・曇</small></span></div>
+              </div>
             </div>
             <div class="rd__right">
               <div class="rd__date">04.03<small>– 04.05</small></div>
               <div class="rd__status is-done">— FINISHED</div>
             </div>
-          </div>
-          <div class="rd">
+          </a>
+          <a class="rd" href="results.html">
             <div class="rd__rd">R3</div>
             <div class="rd__body">
               <div class="rd__cat">SUPER FORMULA — ROUND 03</div>
               <div class="rd__circuit">オートポリス<small>AUTOPOLIS / OITA</small></div>
               <div class="rd__sub"><span><strong>チャーリー・ブルツ</strong></span><span>TEAM GOH</span></div>
+              <div class="rd__result">
+                <div class="rd__result-row"><span class="rd__result-rd">RD.3</span><span class="rd__result-fig">予選 <b>22</b>位 → 決勝 <b>中止</b><small>赤旗・雨</small></span></div>
+              </div>
             </div>
             <div class="rd__right">
               <div class="rd__date">04.24<small>– 04.26</small></div>
               <div class="rd__status is-done">— FINISHED</div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
 
@@ -199,18 +212,22 @@
           </div>
         </div>
         <div class="month__rounds">
-          <div class="rd">
+          <a class="rd" href="results.html">
             <div class="rd__rd">R4<small>R5</small></div>
             <div class="rd__body">
               <div class="rd__cat">SUPER FORMULA — ROUND 04 / 05</div>
               <div class="rd__circuit">鈴鹿サーキット<small>SUZUKA CIRCUIT / MIE</small></div>
               <div class="rd__sub"><span><strong>チャーリー・ブルツ</strong></span><span>TEAM GOH</span></div>
+              <div class="rd__result">
+                <div class="rd__result-row"><span class="rd__result-rd">RD.4</span><span class="rd__result-fig">予選 <b>20</b>位 → 決勝 <b>5</b>位 ★<small>/24台・曇〜雨・初ポイント</small></span></div>
+                <div class="rd__result-row"><span class="rd__result-rd">RD.5</span><span class="rd__result-fig">予選 <b>20</b>位 → 決勝 <b>22</b>位<small>/24台・曇/晴</small></span></div>
+              </div>
             </div>
             <div class="rd__right">
               <div class="rd__date">05.22<small>– 05.24</small></div>
-              <div class="rd__status is-next">NEXT ROUND</div>
+              <div class="rd__status is-done">— FINISHED</div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
 

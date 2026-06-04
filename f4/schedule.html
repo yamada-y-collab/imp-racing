@@ -95,6 +95,12 @@
   @keyframes pulse2 { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
   .rd__status.is-done { color: #999; }
   .rd__status.is-coming { color: #999; }
+  a.rd { text-decoration: none; color: inherit; display: grid; }
+  .rd__result { display: flex; flex-direction: column; gap: 5px; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); }
+  .rd__result-row { display: flex; align-items: baseline; gap: 10px; font-size: 12px; color: #555; }
+  .rd__result-rd { font-family: "Bebas Neue", sans-serif; font-size: 11px; letter-spacing: 0.14em; color: var(--rouge); min-width: 38px; }
+  .rd__result-fig b { font-family: "Anton", sans-serif; font-size: 17px; color: var(--ink); }
+  .rd__result-fig small { color: #999; font-size: 10px; margin-left: 6px; }
 
   @media (max-width: 900px) {
     .month { grid-template-columns: 1fr; gap: 12px; }
@@ -145,18 +151,22 @@
           <div class="month__year">2026</div>
         </div>
         <div class="month__rounds">
-          <div class="rd">
-            <div class="rd__rd">R1</div>
+          <a class="rd" href="results.html">
+            <div class="rd__rd">R1<small>R2</small></div>
             <div class="rd__body">
-              <div class="rd__cat">FIA-F4 JAPANESE CHAMPIONSHIP</div>
+              <div class="rd__cat">FIA-F4 JAPANESE CHAMPIONSHIP — ROUND 01 / 02</div>
               <div class="rd__circuit">富士スピードウェイ<small>FUJI SPEEDWAY / SHIZUOKA</small></div>
               <div class="rd__sub"><span><strong>池島 実紅</strong></span><span>TGM Grand Prix / #53</span></div>
+              <div class="rd__result">
+                <div class="rd__result-row"><span class="rd__result-rd">RD.1</span><span class="rd__result-fig">グリッド <b>32</b>番手 → 決勝 <b>24</b>位<small>/32台・曇り</small></span></div>
+                <div class="rd__result-row"><span class="rd__result-rd">RD.2</span><span class="rd__result-fig">グリッド <b>31</b>番手 → 決勝 <b>27</b>位<small>/32台・晴れ</small></span></div>
+              </div>
             </div>
             <div class="rd__right">
               <div class="rd__date">05.01<small>– 05.04</small></div>
               <div class="rd__status is-done">— FINISHED</div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
 
