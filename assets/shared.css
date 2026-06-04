@@ -14,13 +14,15 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden; /* bodyではなくhtmlに設定することでiOS Safari sticky問題を回避 */
+}
 body {
   background: var(--paper);
   color: var(--ink);
   font-family: "Noto Sans JP", sans-serif;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
@@ -34,9 +36,12 @@ img { display: block; max-width: 100%; }
   justify-content: space-between;
   padding: 0 32px;
   background: var(--paper);
+  position: -webkit-sticky; /* iOS Safari 旧バージョン対応 */
   position: sticky;
   top: 0;
-  z-index: 50;
+  z-index: 100; /* GPU合成レイヤーの上に確実に描画 */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0); /* iOS Safari で compositor layer を正しく確保 */
 }
 .siteheader__logo { font-family: "Bebas Neue", sans-serif; letter-spacing: 0.18em; font-size: 18px; }
 .siteheader__logo span { color: var(--rouge); }
@@ -91,6 +96,7 @@ img { display: block; max-width: 100%; }
 /* ===== HERO (series top) ===== */
 .hero {
   position: relative;
+  z-index: 0; /* 明示的なスタッキングコンテキストでsiteheaderより下に固定 */
   height: 78vh;
   min-height: 580px;
   background: #050505;
@@ -365,4 +371,6 @@ img { display: block; max-width: 100%; }
   .siteheader nav { display: none; }
   .subheader { flex-direction: column; gap: 12px; align-items: flex-start; }
   .subheader nav ul { gap: 16px; flex-wrap: wrap; }
+  /* SP: ヒーロー上部の装飾テキストを非表示（header との干渉を防ぐ） */
+  .hero__corner { display: none; }
 }
