@@ -202,6 +202,29 @@
   .round__status { margin-top: 18px; font-family: "Bebas Neue", sans-serif; font-size: 11px; letter-spacing: 0.2em; color: #999; }
   .round__status .done { color: var(--ink); }
 
+  /* GALLERY */
+  .gallery { padding: 80px 32px 100px; background: var(--ink); }
+  .gallery__head {
+    max-width: 1280px; margin: 0 auto 32px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding-bottom: 18px; color: #fff;
+  }
+  .gallery__head h2 { font-family: "Anton", sans-serif; font-size: 48px; letter-spacing: 0.04em; line-height: 1; }
+  .gallery__head h2 small {
+    display: block; font-family: "Noto Serif JP", serif;
+    font-size: 13px; letter-spacing: 0.18em; margin-bottom: 8px; color: var(--rouge);
+  }
+  .gallery__grid {
+    max-width: 1280px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 140px; gap: 12px;
+  }
+  .g { background-size: cover; background-position: center; overflow: hidden; transition: transform .5s ease; }
+  .g:hover { transform: scale(1.02); }
+  .g--1 { grid-column: span 7; grid-row: span 3; background-image: url('images/wurz_low_angle.jpg'); }
+  .g--2 { grid-column: span 5; grid-row: span 2; background-image: url('images/wurz_pit_side.jpg'); }
+  .g--4 { grid-column: span 6; grid-row: span 2; background-image: url('images/wurz_front_53.jpg'); }
+  .g--5 { grid-column: span 6; grid-row: span 2; background-image: url('images/wurz_race_panning.jpg'); }
 
   @media (max-width: 900px) {
     .profile__inner { grid-template-columns: 1fr; }
@@ -211,6 +234,8 @@
     .team__logo { max-width: 240px; }
     .round { grid-template-columns: 1fr; gap: 24px; }
     .round__meta { grid-template-columns: repeat(2, 1fr); }
+    .gallery__grid { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 120px; }
+    .g--1,.g--2,.g--4,.g--5 { grid-column: span 6; grid-row: span 2; }
   }
 </style>
 </head>
@@ -377,6 +402,19 @@
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery">
+    <div class="gallery__head">
+      <h2><small>SECTION</small>GALLERY</h2>
+    </div>
+    <div class="gallery__grid">
+      <div class="g g--1"></div>
+      <div class="g g--2"></div>
+      <div class="g g--4"></div>
+      <div class="g g--5"></div>
     </div>
   </section>
 
