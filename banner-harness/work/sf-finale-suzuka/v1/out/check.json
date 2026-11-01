@@ -1,0 +1,59 @@
+{
+  "summary": {
+    "error": 0,
+    "warn": 0,
+    "info": 7
+  },
+  "by_size": {
+    "1280x560": "ok",
+    "1200x628": "ok",
+    "1080x1080": "ok",
+    "1080x1350": "ok",
+    "1080x1920": "ok",
+    "300x250": "ok"
+  },
+  "findings": [
+    {
+      "size": "1200x628",
+      "level": "info",
+      "code": "copy-omitted",
+      "message": "省略可の文言を省きました：「VIEW SF SITE →」"
+    },
+    {
+      "size": "1080x1080",
+      "level": "info",
+      "code": "copy-omitted",
+      "message": "省略可の文言を省きました：「VIEW SF SITE →」"
+    },
+    {
+      "size": "1080x1350",
+      "level": "info",
+      "code": "copy-omitted",
+      "message": "省略可の文言を省きました：「VIEW SF SITE →」"
+    },
+    {
+      "size": "1080x1920",
+      "level": "info",
+      "code": "copy-omitted",
+      "message": "省略可の文言を省きました：「VIEW SF SITE →」"
+    },
+    {
+      "size": "300x250",
+      "level": "info",
+      "code": "copy-omitted",
+      "message": "省略可の文言を省きました：「#53 CHARLIE WURZ」"
+    },
+    {
+      "size": "300x250",
+      "level": "info",
+      "code": "copy-omitted",
+      "message": "省略可の文言を省きました：「JAF GRAND PRIX」"
+    },
+    {
+      "size": "300x250",
+      "level": "info",
+      "code": "copy-omitted",
+      "message": "省略可の文言を省きました：「VIEW SF SITE →」"
+    }
+  ]
+}

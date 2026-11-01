@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>SF 最終戦 鈴鹿 — 1080x1350</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#0a0a0a; --rouge:#ff1d4c; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--ink); }
+  main { position:relative; width:1080px; height:1350px; overflow:hidden; background:var(--ink); color:#fff; font-family:"Noto Sans JP",sans-serif; }
+  /* 上：見出しをベタ地に置き、中：写真（マシン）、下：日付と選手 */
+  .head { position:absolute; left:72px; right:72px; top:72px; display:flex; flex-direction:column; align-items:flex-start; }
+  .corner { font-family:"Bebas Neue"; font-size:22px; letter-spacing:.28em; color:rgba(255,255,255,.75); white-space:nowrap; }
+  .kicker { margin-top:28px; font-family:"Bebas Neue"; font-size:30px; letter-spacing:.24em; color:var(--rouge); white-space:nowrap; }
+  .series { margin-top:10px; font-family:"Anton"; font-size:128px; line-height:1; letter-spacing:.02em; white-space:nowrap; }
+  .photo { position:absolute; left:0; top:300px; width:1080px; height:720px; object-fit:cover; }
+  .scrim { position:absolute; left:0; top:300px; width:1080px; height:720px;
+    background:linear-gradient(180deg, var(--ink) 0%, rgba(10,10,10,0) 22%, rgba(10,10,10,0) 55%, rgba(10,10,10,.85) 82%, var(--ink) 100%); }
+  .rail { position:absolute; left:72px; top:900px; width:6px; height:150px; background:var(--rouge); }
+  .when { position:absolute; left:104px; top:892px; display:flex; flex-direction:column; align-items:flex-start; }
+  .circuit { font-family:"Noto Serif JP"; font-weight:900; font-size:44px; line-height:1.2; white-space:nowrap; }
+  .date { margin-top:4px; font-family:"Anton"; font-size:96px; line-height:1.05; letter-spacing:.03em; white-space:nowrap; }
+  .jaf { position:absolute; right:72px; top:900px; font-family:"Bebas Neue"; font-size:24px; letter-spacing:.26em; color:var(--rouge); white-space:nowrap; }
+  .hr { position:absolute; left:72px; right:72px; top:1110px; height:1px; background:rgba(255,255,255,.3); }
+  .who { position:absolute; left:72px; right:72px; top:1140px; display:flex; align-items:center; gap:22px; }
+  .whotext { display:flex; flex-direction:column; align-items:flex-start; }
+  .driver { font-family:"Noto Serif JP"; font-weight:700; font-size:40px; line-height:1.3; white-space:nowrap; }
+  .team { margin-top:4px; font-family:"Bebas Neue"; font-size:24px; letter-spacing:.22em; color:rgba(255,255,255,.85); white-space:nowrap; }
+  .who img { margin-left:auto; height:96px; width:auto; }
+</style>
+</head>
+<body>
+<main data-canvas>
+  <img class="photo" data-role="image" src="../../../../sf/images/wurz_low_angle.jpg" alt="">
+  <div class="scrim" data-role="shape"></div>
+  <div class="head">
+    <div class="corner" data-role="text" id="corner">IMP × RACING — 2026</div>
+    <div class="kicker" data-role="text" id="kicker">SEASON FINALE — RD.11 / RD.12</div>
+    <div class="series" data-role="text" id="series">SUPER FORMULA</div>
+  </div>
+  <div class="rail" data-role="shape"></div>
+  <div class="when">
+    <div class="circuit" data-role="text" id="circuit">鈴鹿サーキット</div>
+    <div class="date" data-role="text" id="date">11.20 – 11.22</div>
+  </div>
+  <div class="jaf" data-role="text" id="jaf">JAF GRAND PRIX</div>
+  <div class="hr" data-role="shape"></div>
+  <div class="who">
+    <div class="whotext">
+      <div class="driver" data-role="text" id="driver">チャーリー・ブルツ</div>
+      <div class="team" data-role="text" id="team">#53 CHARLIE WURZ ／ TEAM GOH</div>
+    </div>
+    <img data-role="logo" id="logo" src="../../../brands/impress-racing/assets/team_goh.png" alt="TEAM GOH">
+  </div>
+</main>
+</body>
+</html>

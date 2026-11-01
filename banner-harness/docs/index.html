@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Banner Harness — Impress Racing</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f6f1; --card: #ffffff; --ink: #1a1a1a; --sub: #6b6b6b; --line: #d9d6cc;
+    --gold: #a6782f; --blue: #4a86b0; --chip: #efece3; --rouge: #ff1d4c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--ink); font-family: "Noto Sans JP", sans-serif; line-height: 1.9; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 72px 24px 96px; }
+  .label { font-family: "IBM Plex Mono", monospace; font-size: 13px; letter-spacing: .2em; color: var(--sub); }
+  h1, h2 { margin: 18px 0 28px; padding-left: 22px; border-left: 4px solid var(--gold); font-size: clamp(24px, 3.4vw, 36px); line-height: 1.45; font-weight: 700; }
+  .lead { font-size: 16px; color: #333; max-width: 760px; }
+  section + section { margin-top: 96px; }
+  code, .mono { font-family: "IBM Plex Mono", monospace; }
+
+  .figure { margin-top: 40px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 40px 32px; overflow-x: auto; }
+  .caption { margin-top: 14px; font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--sub); line-height: 1.8; }
+
+  /* ---- 箱 ---- */
+  .box { background: #fff; border: 1px solid var(--line); padding: 14px 16px; text-align: center; font-size: 12px; color: var(--sub); line-height: 1.6; position: relative; }
+  .box b { display: block; color: var(--ink); font-size: 14px; margin-bottom: 4px; }
+  .box .tool { display: block; font-family: "IBM Plex Mono", monospace; color: var(--gold); font-size: 11px; margin-bottom: 4px; }
+  .box.gold { border-color: var(--gold); }
+  .box.strong { border: 2px solid var(--ink); }
+  .box.dark { background: #1a1a1a; color: #ccc; border-color: #1a1a1a; text-align: left; }
+  .box.dark b { color: #fff; text-align: center; }
+  .box.todo { border-style: dashed; border-color: #9a9a9a; background: transparent; }
+  .chip { display: inline-block; margin-top: 8px; padding: 2px 10px; background: var(--chip); color: var(--ink); font-size: 11px; }
+
+  /* ---- 図1：ワークフロー ---- */
+  .flow { display: grid; grid-template-columns: 170px 1fr; gap: 28px; min-width: 860px; }
+  .side { display: flex; flex-direction: column; gap: 14px; }
+  .auto { border: 1.5px dashed var(--line); border-radius: 12px; padding: 34px 20px 20px; position: relative; }
+  .auto::before { content: "Claude Code ・ /banner-builder （会話の中、または claude -p で無人）"; position: absolute; top: 10px; left: 16px; font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--sub); }
+  .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; align-items: stretch; }
+  .row > .box:not(:last-child)::after { content: "→"; position: absolute; right: -21px; top: 50%; transform: translateY(-50%); color: var(--ink); font-size: 14px; }
+  .row2 { margin-top: 26px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; }
+  .row2 > .box:not(:first-child)::before { content: "←"; position: absolute; left: -21px; top: 50%; transform: translateY(-50%); color: var(--ink); font-size: 14px; }
+  .canon { margin-bottom: 22px; display: flex; justify-content: center; }
+  .canon .box { width: 420px; }
+  .back { margin-top: 18px; font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--blue); text-align: left; }
+
+  /* ---- 図2：アーキテクチャ ---- */
+  .arch { display: grid; grid-template-columns: 1fr 1fr 1fr 1.2fr 1fr; gap: 26px; align-items: center; min-width: 860px; }
+  .arch > .box:not(.out)::after { content: "→"; position: absolute; right: -20px; top: 50%; transform: translateY(-50%); color: var(--ink); }
+  .outs { display: flex; flex-direction: column; gap: 10px; }
+  .outs .box { text-align: left; padding: 10px 14px; }
+  .outs .box b { font-size: 13px; margin: 0; }
+
+  /* ---- 表 ---- */
+  table { width: 100%; border-collapse: collapse; margin-top: 32px; font-size: 13px; background: var(--card); }
+  th, td { border-bottom: 1px solid var(--line); padding: 10px 12px; text-align: left; vertical-align: top; }
+  th { font-family: "IBM Plex Mono", monospace; font-weight: 500; font-size: 11px; letter-spacing: .12em; color: var(--sub); }
+  td.ok { color: #2a7a4b; white-space: nowrap; } td.no { color: var(--sub); white-space: nowrap; }
+  .sample { margin-top: 32px; }
+  .sample img { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 10px; }
+
+  @media (max-width: 720px) {
+    .wrap { padding: 48px 16px 72px; }
+    .figure { padding: 24px 16px; }
+    table { font-size: 12px; }
+    th, td { padding: 8px 6px; }
+    td code { word-break: break-all; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <section>
+    <div class="label">WORKFLOW</div>
+    <h1>規範を渡して組ませ、<br>実測して PPTX で渡す</h1>
+    <p class="lead">
+      依頼を原稿（<code>brief.md</code>）にし、Claude がサイズごとに HTML で組む。
+      ブラウザで実測して PNG・PPTX に変換し、機械が事故を確かめる。
+      PPTX は Canva にドラッグして微調整できる。直しのうち次にも効くものは規範（<code>banner.md</code>）に戻す。
+    </p>
+
+    <div class="figure">
+      <div class="canon">
+        <div class="box"><b>GitHub（imp-racing リポジトリ）＝ 正典</b>サイトの色・言葉・ロゴ／ブランドの写し・生成の指示・道具・検査</div>
+      </div>
+      <div class="flow">
+        <div class="side">
+          <div class="box"><b>依頼者／制作者</b>「SF 最終戦の告知を6サイズで」</div>
+          <div class="box todo"><b>Notion AI</b>要件をヒアリング<span class="chip">未着手</span></div>
+          <div class="box dark"><b>原稿の中身</b>
+            目的・相手<br>入れる文言（優先度順）<br>落としてはいけない語<br>使わない語<br>素材・サイズ</div>
+        </div>
+        <div>
+          <div class="auto">
+            <div class="row">
+              <div class="box gold"><b>1 原稿にする</b><span class="tool">banner.py init</span>日付・会場はサイト内で確かめる</div>
+              <div class="box gold"><b>2 Claude が組む</b><span class="tool">banner.py generate</span>型なしで、サイズごとに HTML<br>描画を自分で見て直す（2回まで）</div>
+              <div class="box"><b>3 実測して変換</b><span class="tool">html2layout → layout2pptx</span>編集できる文字とロゴを PPTX に</div>
+              <div class="box"><b>4 機械の検査</b><span class="tool">check.py</span>文言・はみ出し・重なり・コントラスト。事故だけ見る。止めない</div>
+            </div>
+          </div>
+          <div class="row2">
+            <div class="box"><b>5 シートで見比べる</b><span class="tool">sheet.py</span>6サイズを1枚に</div>
+            <div class="box strong"><b>6 Canva にドラッグ</b>PPTX の文字は編集できる<span class="chip">依頼者／制作者</span></div>
+            <div class="box strong"><b>7 直す</b><span class="tool">banner.py revise</span>前の版を写して直しだけ<span class="chip">人が決める</span></div>
+            <div class="box"><b>8 規範に戻す</b>次にも効く直しは banner.md へ<span class="chip">人の承認つき</span></div>
+          </div>
+          <div class="back">↺ 正典を更新（人の承認つき）— 8 の内容は banner.md、サイトの変更は sync_brand.py で brand.md へ</div>
+        </div>
+      </div>
+    </div>
+    <p class="caption">図1 全体ワークフロー。実線の箱は動いている工程、点線の箱は未着手。灰色のチップは人が手を動かす・決める工程。<br>参考構成にある Notion への書き戻し・Slack 投稿・差分の回収は、接続が決まってから足す。</p>
+  </section>
+
+  <section>
+    <div class="label">ARCHITECTURE</div>
+    <h2>中心は、ブラウザで実測した<br>1つのデータ</h2>
+    <p class="lead">
+      Claude が組んだ HTML をブラウザ（Playwright の Chromium）で描き、座標・色・文字・改行を実測して、
+      出口に拠らない1つの形（<code>layout.json</code>）にする。出口ごとの変換と検査はそこから分ける。
+    </p>
+    <div class="figure">
+      <div class="arch">
+        <div class="box gold"><b>Claude の HTML</b><span class="tool">サイズごとに1枚</span>data-role で<br>text / image / logo / shape</div>
+        <div class="box"><b>ブラウザで実測</b><span class="tool">html2layout.mjs</span>座標・色・文字・改行<br>＋ 文字とロゴを隠した地</div>
+        <div class="box strong"><b>layout.json</b>出口に拠らない<br>1つの形</div>
+        <div class="outs out">
+          <div class="box strong"><b>PPTX → Canva にドラッグ</b><span class="tool">layout2pptx.py</span></div>
+          <div class="box"><b>PNG・シート</b><span class="tool">sheet.py</span></div>
+          <div class="box todo"><b>Figma</b><span class="tool">layout2figma.py（未着手）</span></div>
+          <div class="box todo"><b>Canva の中に組む（Path C）</b><span class="tool">layout2canva.py（候補）</span></div>
+        </div>
+        <div class="box out"><b>機械の検査</b><span class="tool">check.py</span>layout.json と地の PNG を読む<br>文言・はみ出し・重なり・コントラスト</div>
+      </div>
+    </div>
+    <p class="caption">図2 仕組みの中身。実線の出口（PPTX・PNG）は動いている。Figma と Path C は接続が決まってから。</p>
+
+    <div class="sample">
+      <div class="label">SAMPLE — work/sf-finale-suzuka/v1</div>
+      <p class="lead" style="margin-top:8px;">SF 最終戦（鈴鹿・11.20–11.22）の告知を、6サイズで通したもの。検査は error 0 / warn 0。</p>
+      <img src="../work/sf-finale-suzuka/v1/out/sheet.png" alt="6サイズのシート" loading="lazy" style="margin-top:16px;">
+    </div>
+  </section>
+
+  <section>
+    <div class="label">FILES</div>
+    <h2>置き場所と状態</h2>
+    <table>
+      <thead><tr><th>場所</th><th>役割</th><th>状態</th></tr></thead>
+      <tbody>
+        <tr><td><code>CLAUDE.md</code>（リポジトリ直下）</td><td>入口。バナーの依頼はスキルに従う</td><td class="ok">動いている</td></tr>
+        <tr><td><code>.claude/skills/banner-builder/</code></td><td>原稿 → 生成 → 検査 → 直し → 書き出しの手順</td><td class="ok">動いている</td></tr>
+        <tr><td><code>brands/impress-racing/</code></td><td>正典から写したブランド（brand.md・banner.md・SOURCE.json・ロゴ）</td><td class="ok">動いている</td></tr>
+        <tr><td><code>prompts/</code> <code>templates/</code></td><td>生成の指示（型は渡さない）・原稿のひな形</td><td class="ok">動いている</td></tr>
+        <tr><td><code>tools/banner.py</code></td><td>init / generate / revise / export / status</td><td class="ok">動いている</td></tr>
+        <tr><td><code>tools/html2layout.mjs</code> <code>layout2pptx.py</code> <code>sheet.py</code></td><td>実測・PPTX・シート</td><td class="ok">動いている</td></tr>
+        <tr><td><code>tools/check.py</code> <code>tests/check_selftest.py</code></td><td>機械の検査と、わざと壊した入力での自己検査（16 ケース）</td><td class="ok">動いている</td></tr>
+        <tr><td><code>tools/sync_brand.py</code></td><td>正典の変化をハッシュで見張る</td><td class="ok">動いている</td></tr>
+        <tr><td>Notion・Slack・Figma・Canva 連携、差分の回収、無人実行の置き場所</td><td>参考構成の「＋」の部分</td><td class="no">未着手</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+</div>
+</body>
+</html>
