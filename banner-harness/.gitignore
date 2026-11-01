@@ -1,0 +1,4 @@
+# 書き出しは作り直せるので、人が見るシートと所見だけを残す
+work/*/v*/out/*
+!work/*/v*/out/sheet.png
+!work/*/v*/out/check.json

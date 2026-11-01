@@ -55,6 +55,18 @@
 
 ---
 
+## バナー制作ハーネス（`banner-harness/`）
+
+告知バナーを「原稿 → 生成 → 実測 → 検査 → PNG・シート・PPTX」の順で作る仕組み。
+Claude Code に「バナーを作って」と頼むと、スキル `banner-builder`（`.claude/skills/banner-builder/SKILL.md`）の手順で動く。
+
+- 設計と状態：`banner-harness/docs/design.md`、図解：`banner-harness/docs/index.html`
+- 入口：`python3 banner-harness/tools/banner.py --help`
+- 検査の自己テスト：`python3 banner-harness/tests/check_selftest.py`
+- 見本：`banner-harness/work/sf-finale-suzuka/`（SF 最終戦の6サイズ）
+
+---
+
 ## 打合せ決定事項の反映状況（2026.05.13）
 
 | 項目 | 決定内容 | 反映状況 |

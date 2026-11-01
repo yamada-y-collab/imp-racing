@@ -1,0 +1,30 @@
+{
+  "canon": "imp-racing リポジトリ直下（サイト本体）",
+  "sources": {
+    "README.md#デザインコンセプト": {
+      "sha256": "ea680c2beb2bed0f02bc71f6e7d4ef16ed8766970ce13bf1bceace5dd3cdf263",
+      "excerpt": "**STILL RACING.** — 重厚な黒ベース × ピンク（マゼンタ系レッド）アクセント。\n\n- 和欧混植：Noto Serif JP（見出し）× Anton（数字・英字）× Bebas Neue（キャプション）\n- エディトリアル誌風レイアウト × レーシング由来のスピード感\n\nカラー：\n- `--ink: #0a0a0a` （黒）\n- `--paper: #f5f4ef` （ペーパー）"
+    },
+    "assets/shared.css#:root": {
+      "sha256": "9df830da793bf207cf647422273d2d2a2f22fe5adf8fb80be28763f3d0b898e1",
+      "tokens": {
+        "--ink": "#0a0a0a",
+        "--paper": "#f5f4ef",
+        "--paper-2": "#ebe9e2",
+        "--rouge": "#ff1d4c",
+        "--rouge-deep": "#c81038",
+        "--gold": "#c8a96a",
+        "--line": "rgba(10, 10, 10, 0.12)"
+      }
+    },
+    "assets/logos/team_goh.png": {
+      "sha256": "0a59474e015719427732731d22bd8902c54aad94c216a14bdb960e2c50015111"
+    },
+    "assets/logos/tgm_dark.png": {
+      "sha256": "4be973d2454d0356834c9eec2a608c9ebe4cd6fcb71f6f44e3eeee0c81ad4e9f"
+    },
+    "assets/logos/tgm_light.png": {
+      "sha256": "122af3ed71250612e7950a8e47728d85022e44b8aeebe9514d87c1a8fd7b0eda"
+    }
+  }
+}
